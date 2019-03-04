@@ -75,8 +75,15 @@ class MyScene extends CGFscene {
         if (this.displayTangram)     
             this.tangram.display(this);
 
-        if (this.displayUnitCube)       
+        if (this.displayUnitCube)
+        {
+            this.pushMatrix();
+
+            this.translate(0, 0, -0.5);
             this.unitcube.display(this);
+
+            this.popMatrix();
+        }
 
 
         // ---- END Primitive drawing section

@@ -72,8 +72,7 @@ class MyTangram extends CGFobject {
             //scene.scale(-1,1,1);
             scene.translate(0,2*Math.sqrt(2),0);
             scene.rotate(1.25,0,0,1);
-            
-
+          
             scene.parallelogram.display();
 
             scene.popMatrix();
@@ -132,7 +131,6 @@ class MyTangram extends CGFobject {
 
             scene.popMatrix();
         }
-        
 	}
 }
 
