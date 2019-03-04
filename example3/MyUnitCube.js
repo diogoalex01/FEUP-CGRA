@@ -22,7 +22,18 @@ class MyUnitCube extends CGFobject {
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
-			0, 5, 2,
+			0, 1, 5,
+			4, 0, 5,
+			1, 0, 2,
+			2, 3, 1,
+			3, 2, 6,
+			7, 3, 6,
+			7, 6, 5,
+			4, 5, 6,
+			0, 4, 6,
+			6, 2, 0,
+			1, 3, 7,
+			7, 5, 1
 		];
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
