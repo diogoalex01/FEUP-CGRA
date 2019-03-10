@@ -92,9 +92,7 @@ class MyScene extends CGFscene {
         this.customMaterial.setAmbient(...this.hexToRgbA(this.customMaterialValues['Ambient']));
         this.customMaterial.setDiffuse(...this.hexToRgbA(this.customMaterialValues['Diffuse']));
         this.customMaterial.setSpecular(...this.hexToRgbA(this.customMaterialValues['Specular']));
-
         this.customMaterial.setShininess(this.customMaterialValues['Shininess']);
-
     };
 
     updateObjectComplexity(){
@@ -173,10 +171,10 @@ class MyScene extends CGFscene {
         else
             this.objects[this.selectedObject].disableNormalViz();
         
-
-            this.objects[this.selectedObject].display();
+        this.objects[this.selectedObject].display();
                 
         this.popMatrix();
+        
         // ---- END Primitive drawing section
     }
 }

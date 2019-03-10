@@ -13,7 +13,6 @@ class MyTriangle extends CGFobject {
 			1, -1, 0,	//0
 			-1, 1, 0,	//1
 			-1, -1, 0,	//2
-
 		];
 
 		//Counter-clockwise reference of vertices
@@ -22,6 +21,12 @@ class MyTriangle extends CGFobject {
 		];
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
+
+		// Generating normals
+		this.normals = [];
+
+		this.normals.push(0, 0, 1); //0
+		this.normals.push(0, 0, 1); //1
+		this.normals.push(0, 0, 1); //2
 	}
 }
-
