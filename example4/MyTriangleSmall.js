@@ -22,6 +22,13 @@ class MyTriangleSmall extends CGFobject {
 		];
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
+
+		// Generating normals
+		this.normals = [];
+
+		this.normals.push(0, 0, 1); //0
+		this.normals.push(0, 0, 1); //1
+		this.normals.push(0, 0, 1); //2
 	}
 }
 

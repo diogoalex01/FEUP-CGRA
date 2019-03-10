@@ -43,23 +43,36 @@ class MyUnitCube extends CGFobject {
 		this.initGLBuffers();
 
 		// Generating normals
-		/*
-		As this plane is being drawn on the xy plane, the normal to the plane will be along the positive z axis.
-		So all the vertices will have the same normal, (0, 0, 1).
-		*/
 		this.normals = [];
 
-		this.normals.push(0, 0, 1);
-		
+		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //0
+		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //1
+		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //2
+		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //3
+		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //4
+		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //5
+		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //6
+		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //7
+
+		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //0
+		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //1
+		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //2
+		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //3
+		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //4
+		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //5
+		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //6
+		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //7
+
+		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //0
+		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //1
+		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //2
+		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //3
+		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //4
+		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //5
+		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //6
+		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //7
 	}
 	
 	updateBuffers(complexity){
     }
-
-    //enableNormalViz() {
-    //}
-
-    //disableNormalViz() {
-    //}
 }
-
