@@ -11,22 +11,22 @@ class MyTangram extends CGFobject {
 	initBuffers(scene) {
 
 		//Initialize scene objects
-        scene.diamond = new MyDiamond(scene);
-        scene.triangle = new MyTriangle(scene);
-        scene.parallelogram = new MyParallelogram(scene);
-        scene.smalltriangle1 = new MyTriangleSmall(scene);
-        scene.bigtriangle1 = new MyTriangleBig(scene);
-        scene.smalltriangle2 = new MyTriangleSmall(scene);
-        scene.bigtriangle2 = new MyTriangleBig(scene);
+        this.scene.diamond = new MyDiamond(scene);
+        this.scene.triangle = new MyTriangle(scene);
+        this.scene.parallelogram = new MyParallelogram(scene);
+        this.scene.smalltriangle1 = new MyTriangleSmall(scene);
+        this.scene.bigtriangle1 = new MyTriangleBig(scene);
+        this.scene.smalltriangle2 = new MyTriangleSmall(scene);
+        this.scene.bigtriangle2 = new MyTriangleBig(scene);
 
         //Objects connected to MyInterface
-        scene.displayDiamond = true;
-        scene.displayTriangle = true;
-        scene.displayParallelogram = true;
-        scene.displayTriangleSmall1 = true;
-        scene.displayTriangleBig1 = true;
-        scene.displayTriangleSmall2 = true;
-        scene.displayTriangleBig2 = true;
+        this.scene.displayDiamond = true;
+        this.scene.displayTriangle = true;
+        this.scene.displayParallelogram = true;
+        this.scene.displayTriangleSmall1 = true;
+        this.scene.displayTriangleBig1 = true;
+        this.scene.displayTriangleSmall2 = true;
+        this.scene.displayTriangleBig2 = true;
 
 	}
 
@@ -34,103 +34,103 @@ class MyTangram extends CGFobject {
 	{
 
 	// Draw diamond
-        if (scene.displayDiamond)
+        if (this.scene.displayDiamond)
         {
-            scene.pushMatrix();
+            this.scene.pushMatrix();
             
-            scene.multMatrix([1, 0, 0, 0,
+            this.scene.multMatrix([1, 0, 0, 0,
                              0, 1, 0, 0,
                              0, 0, 1, 0,
                              0, -5*Math.sqrt(2)/2 , 0, 1]);
-            scene.multMatrix([Math.cos(Math.PI/4), Math.sin(Math.PI/4), 0, 0,
+            this.scene.multMatrix([Math.cos(Math.PI/4), Math.sin(Math.PI/4), 0, 0,
                              -Math.sin(Math.PI/4), Math.cos(Math.PI/4), 0, 0,
                              0, 0, 1, 0,
                              0, 0, 0, 1]);
-            scene.diamond.display();
-            scene.popMatrix();
+            this.scene.diamond.display();
+            this.scene.popMatrix();
         }
 
         // Draw triangle
-        if (scene.displayTriangle)
+        if (this.scene.displayTriangle)
         {
-            scene.pushMatrix();
+            this.scene.pushMatrix();
 
-            scene.translate(Math.sqrt(2)/2,-Math.sqrt(2),0);
-            scene.rotate(-Math.PI/4,0,0,1);
+            this.scene.translate(Math.sqrt(2)/2,-Math.sqrt(2),0);
+            this.scene.rotate(-Math.PI/4,0,0,1);
 
-            scene.triangle.display();
+            this.scene.triangle.display();
 
-            scene.popMatrix();
+            this.scene.popMatrix();
             
         }
 
         // Draw parallelogram
-        if (scene.displayParallelogram)
+        if (this.scene.displayParallelogram)
         {
-            scene.pushMatrix();
+            this.scene.pushMatrix();
             
-            //scene.scale(-1,1,1);
-            scene.translate(0,2*Math.sqrt(2),0);
-            scene.rotate(1.25,0,0,1);
+            //this.scene.scale(-1,1,1);
+            this.scene.translate(0,2*Math.sqrt(2),0);
+            this.scene.rotate(1.25,0,0,1);
             
 
-            scene.parallelogram.display();
+            this.scene.parallelogram.display();
 
-            scene.popMatrix();
+            this.scene.popMatrix();
         }
             
 
         // Draw Small Triangle 1
-        if (scene.displayTriangleSmall1)
+        if (this.scene.displayTriangleSmall1)
         {
-            scene.pushMatrix();
+            this.scene.pushMatrix();
 
-            scene.translate(0,-Math.sqrt(2)/2,0);
-            scene.rotate(Math.PI/4,0,0,1);
+            this.scene.translate(0,-Math.sqrt(2)/2,0);
+            this.scene.rotate(Math.PI/4,0,0,1);
 
-            scene.smalltriangle1.display();
+            this.scene.smalltriangle1.display();
 
-            scene.popMatrix();
+            this.scene.popMatrix();
         }
 
         // Draw Small Triangle 2
-        if (scene.displayTriangleSmall2)
+        if (this.scene.displayTriangleSmall2)
         {
-            scene.pushMatrix();
+            this.scene.pushMatrix();
 
-            scene.translate(0,-3/Math.sqrt(2),0);
-            scene.rotate(3*Math.PI/4,0,0,1);
+            this.scene.translate(0,-3/Math.sqrt(2),0);
+            this.scene.rotate(3*Math.PI/4,0,0,1);
 
-            scene.smalltriangle2.display();
+            this.scene.smalltriangle2.display();
 
-            scene.popMatrix();
+            this.scene.popMatrix();
         }
 
 
         // Draw Big Triangle 1
-        if (scene.displayTriangleBig1)
+        if (this.scene.displayTriangleBig1)
         {
-            scene.pushMatrix();
+            this.scene.pushMatrix();
 
-            scene.translate(0,Math.sqrt(2),0);
-            scene.rotate(3*Math.PI/4,0,0,1);
+            this.scene.translate(0,Math.sqrt(2),0);
+            this.scene.rotate(3*Math.PI/4,0,0,1);
            
-            scene.bigtriangle1.display();
+            this.scene.bigtriangle1.display();
 
-            scene.popMatrix();
+            this.scene.popMatrix();
         }
 
         // Draw Big Triangle 2
-        if (scene.displayTriangleBig2)
+        if (this.scene.displayTriangleBig2)
         {
-            scene.pushMatrix();
+            this.scene.pushMatrix();
 
-            scene.translate(0,Math.sqrt(2),0);
-            scene.rotate(-Math.PI/4,0,0,1);
+            this.scene.translate(0,Math.sqrt(2),0);
+            this.scene.rotate(-Math.PI/4,0,0,1);
            
-            scene.bigtriangle2.display();
+            this.scene.bigtriangle2.display();
 
-            scene.popMatrix();
+            this.scene.popMatrix();
         }
         
 	}
