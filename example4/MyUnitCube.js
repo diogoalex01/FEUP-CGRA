@@ -14,6 +14,25 @@ class MyUnitCube extends CGFobject {
 	}
 	initBuffers() {
 		this.vertices = [
+			// X
+			0.5, 0.5, -0.5,	//0
+			0.5, 0.5, 0.5,	//1
+			-0.5, 0.5, -0.5, //2
+			-0.5, 0.5, 0.5,	//3
+			0.5, -0.5, -0.5, //4
+			0.5, -0.5, 0.5,	//5
+			-0.5, -0.5, -0.5, //6
+			-0.5, -0.5, 0.5,	//7
+			// Y
+			0.5, 0.5, -0.5,	//0
+			0.5, 0.5, 0.5,	//1
+			-0.5, 0.5, -0.5, //2
+			-0.5, 0.5, 0.5,	//3
+			0.5, -0.5, -0.5, //4
+			0.5, -0.5, 0.5,	//5
+			-0.5, -0.5, -0.5, //6
+			-0.5, -0.5, 0.5,	//7
+			// Z
 			0.5, 0.5, -0.5,	//0
 			0.5, 0.5, 0.5,	//1
 			-0.5, 0.5, -0.5, //2
@@ -45,32 +64,35 @@ class MyUnitCube extends CGFobject {
 		// Generating normals
 		this.normals = [];
 
-		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //0
-		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //1
-		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //2
-		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //3
-		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //4
-		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //5
-		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //6
-		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //7
+		// X
+		this.normals.push(1, 0, 0); //0
+		this.normals.push(1, 0, 0); //1
+		this.normals.push(-1, 0, 0); //2
+		this.normals.push(-1, 0, 0); //3
+		this.normals.push(1, 0, 0); //4
+		this.normals.push(1, 0, 0); //5
+		this.normals.push(-1, 0, 0); //6
+		this.normals.push(-1, 0, 0); //7
 
-		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //0
-		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //1
-		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //2
-		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //3
-		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //4
-		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //5
-		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //6
-		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //7
+		// Y
+		this.normals.push(0, 1, 0); //0
+		this.normals.push(0, 1, 0); //1
+		this.normals.push(0, 1, 0); //2
+		this.normals.push(0, 1, 0); //3
+		this.normals.push(0, -1, 0); //4
+		this.normals.push(0, -1, 0); //5
+		this.normals.push(0, -1, 0); //6
+		this.normals.push(0, -1, 0); //7
 
-		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //0
-		this.normals.push(1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //1
-		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), -1 / Math.sqrt(3)); //2
-		this.normals.push(-1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)); //3
-		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //4
-		this.normals.push(1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //5
-		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), -1 / Math.sqrt(3)); //6
-		this.normals.push(-1 / Math.sqrt(3), -1 / Math.sqrt(3), 1 / Math.sqrt(3)); //7
+		// Z
+		this.normals.push(0, 0, -1); //0
+		this.normals.push(0, 0, 1); //1
+		this.normals.push(0, 0, -1); //2
+		this.normals.push(0, 0, 1); //3
+		this.normals.push(0, 0, -1); //4
+		this.normals.push(0, 0, 1); //5
+		this.normals.push(0, 0, -1); //6
+		this.normals.push(0, 0, 1); //7
 	}
 	
 	updateBuffers(complexity){
