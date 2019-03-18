@@ -7,6 +7,7 @@ class MyTangram extends CGFobject {
     constructor(scene) {
         super(scene);
         this.initBuffers(scene);
+        this.initMaterials(scene);
     }
 
     initBuffers(scene) {
@@ -31,11 +32,61 @@ class MyTangram extends CGFobject {
 
     }
 
+         
+    initMaterials(scene) {
+
+        // Colors
+        this.red = new CGFappearance(scene);
+        this.red.setAmbient(1, 0.11, 0.11, 1.0);
+        this.red.setDiffuse(1, 0.11, 0.11, 1.0);
+        this.red.setSpecular(1, 1, 1, 1.0);
+        this.red.setShininess(10.0);
+
+        this.green = new CGFappearance(scene);
+        this.green.setAmbient(0, 1, 0, 1.0);
+        this.green.setDiffuse(0, 1, 0, 1.0);
+        this.green.setSpecular(1, 1, 1, 1.0);
+        this.green.setShininess(10.0);
+
+        this.blue = new CGFappearance(scene);
+        this.blue.setAmbient(0, 0.61, 1, 1.0);
+        this.blue.setDiffuse(0, 0.61, 1, 1.0);
+        this.blue.setSpecular(1, 1, 1, 1.0);
+        this.blue.setShininess(10.0);
+
+        this.yellow = new CGFappearance(scene);
+        this.yellow.setAmbient(1, 1, 0, 1.0);
+        this.yellow.setDiffuse(1, 1, 0, 1.0);
+        this.yellow.setSpecular(1, 1, 1, 1.0);
+        this.yellow.setShininess(10.0);
+
+        this.orange = new CGFappearance(scene);
+        this.orange.setAmbient(1, 0.61, 0, 1.0);
+        this.orange.setDiffuse(1, 0.61, 0, 1.0);
+        this.orange.setSpecular(1, 1, 1, 1.0);
+        this.orange.setShininess(10.0);
+
+        this.purple = new CGFappearance(scene);
+        this.purple.setAmbient(0.59, 0.31, 0.75, 1.0);
+        this.purple.setDiffuse(0.59, 0.31, 0.75, 1.0);
+        this.purple.setSpecular(1, 1, 1, 1.0);
+        this.purple.setShininess(10.0);
+
+        this.pink = new CGFappearance(scene);
+        this.pink.setAmbient(1, 0.61, 0.81, 1.0);
+        this.pink.setDiffuse(1, 0.61, 0.81, 1.0);
+        this.pink.setSpecular(1, 1, 1, 1.0);
+        this.pink.setShininess(10.0);
+
+    }
+
+
     display(scene) {
 
         // Draw diamond
         this.scene.pushMatrix();
-
+        this.scene.customMaterial.apply();
+        
         this.scene.multMatrix(
             [1, 0, 0, 0,
             0, 1, 0, 0,
@@ -46,22 +97,25 @@ class MyTangram extends CGFobject {
             -Math.sin(Math.PI / 4), Math.cos(Math.PI / 4), 0, 0,
             0, 0, 1, 0,
             0, 0, 0, 1]);
+
         this.scene.diamond.display();
         this.scene.popMatrix();
 
 
         // Draw triangle
+        this.pink.apply();
         this.scene.pushMatrix();
-
+      
         this.scene.translate(Math.sqrt(2) / 2, -Math.sqrt(2), 0);
         this.scene.rotate(-Math.PI / 4, 0, 0, 1);
-
+  
         this.scene.triangle.display();
 
         this.scene.popMatrix();
 
         
         // Draw parallelogram
+        this.yellow.apply();
         this.scene.pushMatrix();
 
         //this.scene.scale(-1,1,1);
@@ -73,6 +127,7 @@ class MyTangram extends CGFobject {
 
 
         // Draw Small Triangle 1
+        this.red.apply();
         this.scene.pushMatrix();
 
         this.scene.translate(0, -Math.sqrt(2) / 2, 0);
@@ -84,6 +139,7 @@ class MyTangram extends CGFobject {
 
 
         // Draw Small Triangle 2
+        this.purple.apply();
         this.scene.pushMatrix();
 
         this.scene.translate(0, -3 / Math.sqrt(2), 0);
@@ -95,6 +151,7 @@ class MyTangram extends CGFobject {
 
 
         // Draw Big Triangle 1
+        this.orange.apply();
         this.scene.pushMatrix();
 
         this.scene.translate(0, Math.sqrt(2), 0);
@@ -106,6 +163,7 @@ class MyTangram extends CGFobject {
 
 
         // Draw Big Triangle 2
+        this.blue.apply();
         this.scene.pushMatrix();
 
         this.scene.translate(0, Math.sqrt(2), 0);
