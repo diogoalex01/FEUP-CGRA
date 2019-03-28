@@ -82,6 +82,7 @@ class MyTangram extends CGFobject {
         this.diamondMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.diamondMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.diamondMaterial.setShininess(10.0);
+        this.diamondMaterial.loadTexture('images/tangram.png');
         this.diamondMaterial.setTexture(this.textureTangram);
         this.diamondMaterial.setTextureWrap('REPEAT', 'REPEAT');
         //------
@@ -90,6 +91,9 @@ class MyTangram extends CGFobject {
 
 
     display() {
+
+        this.scene.pushMatrix();
+        this.scene.scale(0.25, 0.25, 0.25);
 
         this.diamondMaterial.apply();
 
@@ -155,6 +159,8 @@ class MyTangram extends CGFobject {
         this.scene.translate(0, Math.sqrt(2), 0);
         this.scene.rotate(-Math.PI / 4, 0, 0, 1);
         this.scene.bigtriangle2.display();
+        this.scene.popMatrix();
+
         this.scene.popMatrix();
     }
 
