@@ -20,7 +20,7 @@ class MyCylinder extends CGFobject {
 		var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
 			
-		for(var i = 0; i < this.slices; i++) {
+		for(var i = 0; i <= this.slices; i++) {
 
 			var sa=Math.sin(ang);
 			var saa=Math.sin(ang+alphaAng);
@@ -38,7 +38,6 @@ class MyCylinder extends CGFobject {
 				0,
 				sa
 			];
-
 			// push normal once for each vertex of this triangle
 			this.normals.push(...normal);
 			this.normals.push(...normal);
@@ -47,12 +46,13 @@ class MyCylinder extends CGFobject {
 		}
 
 		for (var i = 0; i < this.slices; i++) {
-			this.indices.push(2*i, (2*i+1) , (2*i+2) );
-			this.indices.push((2*i), (2*i+2) , (2*i+3) );
+			this.indices.push((2*i+2), (2*i+1) , (2*i) );
+			this.indices.push((2*i+1), (2*i+2) , (2*i+3) );
 		}
+		
 
-		alert(this.vertices.length);
-		alert(this.normals.length);
+		//alert(this.vertices.length);
+		//alert(this.normals.length);
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
