@@ -14,10 +14,9 @@ class MyUnitCubeQuad extends CGFobject {
 		this.scene.quad1 = new MyQuad(this.scene);
 		this.scene.quad2 = new MyQuad(this.scene);
 		this.scene.quad3 = new MyQuad(this.scene);
-
-		this.initMaterials();
 	}
 	
+	/*//
 	initMaterials() {
 
         //------ Textures
@@ -51,13 +50,13 @@ class MyUnitCubeQuad extends CGFobject {
         this.cubeMaterialTop.setTextureWrap('REPEAT', 'REPEAT');
         //------
 
-    }
+	} */
 
 	display() {
 
 		//top
-		this.cubeMaterialTop.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+		//this.cubeMaterialTop.apply();
+		//this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
 		this.scene.pushMatrix();
 		this.scene.translate(0,0, 0.5);
@@ -65,8 +64,8 @@ class MyUnitCubeQuad extends CGFobject {
 		this.scene.popMatrix();
 
 		//bottom
-		this.cubeMaterialBottom.apply();	
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+		//this.cubeMaterialBottom.apply();	
+		//this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 	
 		this.scene.pushMatrix();
 		this.scene.translate(0,0, -0.5);
@@ -75,8 +74,8 @@ class MyUnitCubeQuad extends CGFobject {
 		this.scene.popMatrix();
 
 		//side
-		this.cubeMaterialSide.apply();
-		this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
+		//this.cubeMaterialSide.apply();
+		//this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
 		this.scene.pushMatrix();
 		this.scene.translate(0.5,0, 0);
@@ -105,32 +104,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.quad1.display();
         this.scene.popMatrix();
 
-		/*// Generating normals
-		this.normals = [
-
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1,
-
-		];
-		
-		/*
-		Texture coords (s,t)
-		+----------> s
-        |
-        |
-		|
-		v
-        t
-        */
-		/*
-		this.texCoords = [
-			0, 1,
-			1, 1,
-			0, 0,
-			1, 0
-		]*/
 	}
 
 	updateBuffers(complexity) {

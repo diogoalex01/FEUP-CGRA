@@ -10,7 +10,7 @@ class MyPrism extends CGFobject {
 		this.initBuffers();		
 	}
 
-	initBuffers(slices) {
+	initBuffers() {
 
 		this.vertices = [];
 		this.indices = [];

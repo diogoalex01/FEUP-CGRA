@@ -10,7 +10,7 @@ class MyCylinder extends CGFobject {
 		this.initBuffers();		
 	}
 
-	initBuffers(slices) {
+	initBuffers() {
 
 		this.vertices = [];
 		this.indices = [];
@@ -46,8 +46,8 @@ class MyCylinder extends CGFobject {
 		}
 
 		for (var i = 0; i < this.slices; i++) {
-			this.indices.push((2*i+2), (2*i+1) , (2*i) );
-			this.indices.push((2*i+1), (2*i+2) , (2*i+3) );
+			this.indices.push((2*i+2), (2*i+1) , (2*i));
+			this.indices.push((2*i+1), (2*i+2) , (2*i+3));
 		}
 		
 

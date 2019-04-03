@@ -8,18 +8,33 @@ class MyTree extends CGFobject {
         treeTopTexture) {
         super(scene);
         this.scene = scene;
-        this.trunkHeight = trunkHeight;
-        this.trunkRadius = trunkRadius;
-        this.treeTopHeight = treeTopHeight;
-        this.treeTopRadius = treeTopRadius;
-        this.trunkTexture = trunkTexture;
-        this.treeTopTexture = treeTopTexture;
+        this.scene.trunkHeight = trunkHeight;
+        this.scene.trunkRadius = trunkRadius;
+        this.scene.treeTopHeight = treeTopHeight;
+        this.scene.treeTopRadius = treeTopRadius;
+        this.scene.trunkTexture = trunkTexture;
+        this.scene.treeTopTexture = treeTopTexture;
     }
 
 
     display() {
 
         //this.diamondMaterial.apply();
+        
+    }
 
+    updateBuffers(complexity) {
+    }
+
+    enableNormalViz() {
+        //this.scene.cubeQuad.enableNormalViz();
+        //this.scene.pyramid.enableNormalViz();
+        //this.scene.prism.enableNormalViz();
+    }
+
+    disableNormalViz() {
+        //this.scene.cubeQuad.disableNormalViz();
+        //this.scene.pyramid.disableNormalViz();
+        //this.scene.prism.disableNormalViz();
     }
 }
