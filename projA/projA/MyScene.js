@@ -21,8 +21,17 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.prism = new MyPrism(this, 8);
+        this.cylinder = new MyCylinder(this, 12);
 
-        //Objects connected to MyInterface
+        //Other variables connected to MyInterface
+        this.selectedObject = 0;
+        this.displayAxis = true;
+        this.displayPrism = false;
+        this.displayNormals = false;
+        this.displayCylinder = false;
+        this.scaleFactor = 2.0;
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -56,8 +65,22 @@ class MyScene extends CGFscene {
         //Apply default appearance
         this.setDefaultAppearance();
 
+        if (this.displayNormals) {
+            this.prism.enableNormalViz();
+            this.cylinder.enableNormalViz();
+        }
+        else {
+            this.prism.disableNormalViz();
+            this.cylinder.disableNormalViz();
+        }
+    
         // ---- BEGIN Primitive drawing section
 
+        if (this.displayPrism) 
+            this.prism.display(this);
+
+        if (this.displayCylinder)     
+            this.cylinder.display(this);
 
         // ---- END Primitive drawing section
     }
