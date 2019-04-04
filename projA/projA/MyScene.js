@@ -23,16 +23,18 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 8);
         this.cylinder = new MyCylinder(this, 12);
-        this.tree = new MyTree(this);
+        this.tree = new MyTree(this,1.5,0.2,1.2,0.8,'images/tangram.png');
         this.house = new MyHouse(this);
+        this.treeGroup = new MyTreeGroupPatch(this);
+        this.treeRow = new MyTreeRowPatch(this);
 
         //Other variables connected to MyInterface
         this.selectedObject = 0;
         this.displayAxis = true;
-        this.displayPrism = false;
         this.displayNormals = false;
-        this.displayCylinder = false;
         this.displayTree = false;
+        this.displayTreeGroup = false;
+        this.displayTreeRow = false;
         this.displayHouse = false;
         this.scaleFactor = 2.0;
     }
@@ -87,11 +89,11 @@ class MyScene extends CGFscene {
     
         // ---- BEGIN Primitive drawing section
 
-        if (this.displayPrism) 
-            this.prism.display();
+        if (this.displayTreeGroup) 
+            this.treeGroup.display();
 
-        if (this.displayCylinder)     
-            this.cylinder.display();
+            if (this.displayTreeRow) 
+            this.treeRow.display();
 
         if (this.displayTree) 
             this.tree.display();

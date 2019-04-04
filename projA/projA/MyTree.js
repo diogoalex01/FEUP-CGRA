@@ -7,19 +7,47 @@ class MyTree extends CGFobject {
     constructor(scene, trunkHeight, trunkRadius, treeTopHeight, treeTopRadius, trunkTexture,
         treeTopTexture) {
         super(scene);
-        this.scene = scene;
-        this.scene.trunkHeight = trunkHeight;
-        this.scene.trunkRadius = trunkRadius;
-        this.scene.treeTopHeight = treeTopHeight;
-        this.scene.treeTopRadius = treeTopRadius;
-        this.scene.trunkTexture = trunkTexture;
-        this.scene.treeTopTexture = treeTopTexture;
+        //this.scene = scene;
+        this.trunkHeight = trunkHeight;
+        this.trunkRadius = trunkRadius;
+        this.treeTopHeight = treeTopHeight;
+        this.treeTopRadius = treeTopRadius;
+        this.trunkTexture = trunkTexture;
+        this.treeTopTexture = treeTopTexture;
+
+        this.scene.cylinder = new MyCylinder(this.scene, 8);
+        this.scene.cone = new MyCone(this.scene, 8), 1;
     }
+    initMaterials() {
 
+        //------ Textures
+        this.textureTrunk = new CGFtexture(this.scene, this.trunkTexture);
 
-    display() {
+        //------ Applied Material
+        this.trunkMaterial = new CGFappearance(this.scene);
+        this.trunkMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+    this.trunkMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.trunkMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.trunkMaterial.setShininess(10.0);
+        this.trunkMaterial.loadTexture(this.trunkTexture);
+        this.trunkMaterial.setTexture(this.textureTrunk);
+        this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        //------
 
-        //this.diamondMaterial.apply();
+    }
+    display() 
+    {
+
+        this.scene.pushMatrix();
+        this.scene.scale(this.trunkRadius, this.trunkHeight, this.trunkRadius);
+        this.scene.cylinder.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0, this.trunkHeight, 0);
+        this.scene.scale(this.treeTopRadius, this.treeTopHeight, this.treeTopRadius);
+        this.scene.cone.display();
+        this.scene.popMatrix();
         
     }
 
@@ -27,14 +55,14 @@ class MyTree extends CGFobject {
     }
 
     enableNormalViz() {
-        //this.scene.cubeQuad.enableNormalViz();
-        //this.scene.pyramid.enableNormalViz();
+        this.scene.cylinder.enableNormalViz();
+        this.scene.cone.enableNormalViz();
         //this.scene.prism.enableNormalViz();
     }
 
     disableNormalViz() {
-        //this.scene.cubeQuad.disableNormalViz();
-        //this.scene.pyramid.disableNormalViz();
+        this.scene.cylinder.disableNormalViz();
+        this.scene.cone.disableNormalViz();
         //this.scene.prism.disableNormalViz();
     }
 }
