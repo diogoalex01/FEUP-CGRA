@@ -23,7 +23,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 8);
         this.cylinder = new MyCylinder(this, 12);
-        this.tree = new MyTree(this,1.5,0.2,1.2,0.8,'images/tangram.png');
+        this.tree = new MyTree(this, 1.5, 0.2, 1.2, 0.8, 'images/tangram.png');
         this.house = new MyHouse(this);
         this.treeGroup = new MyTreeGroupPatch(this);
         this.treeRow = new MyTreeRowPatch(this);
@@ -69,7 +69,8 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        this.axis.display();
+        if (this.displayAxis)
+            this.axis.display();
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -86,20 +87,25 @@ class MyScene extends CGFscene {
             this.tree.disableNormalViz();
             this.house.disableNormalViz();
         }
-    
+
         // ---- BEGIN Primitive drawing section
 
-        if (this.displayTreeGroup) 
+        this.pushMatrix();
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+
+        if (this.displayTreeGroup)
             this.treeGroup.display();
 
-            if (this.displayTreeRow) 
+        if (this.displayTreeRow)
             this.treeRow.display();
 
-        if (this.displayTree) 
+        if (this.displayTree)
             this.tree.display();
 
-        if (this.displayHouse)     
+        if (this.displayHouse)
             this.house.display();
+
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
