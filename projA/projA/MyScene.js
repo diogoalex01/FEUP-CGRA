@@ -27,6 +27,7 @@ class MyScene extends CGFscene {
         this.house = new MyHouse(this);
         this.treeGroup = new MyTreeGroupPatch(this);
         this.treeRow = new MyTreeRowPatch(this);
+        this.hill = new MyVoxelHill(this, 5);
 
         //Other variables connected to MyInterface
         this.selectedObject = 0;
@@ -36,6 +37,7 @@ class MyScene extends CGFscene {
         this.displayTreeGroup = false;
         this.displayTreeRow = false;
         this.displayHouse = false;
+        this.displayVoxelHill = false;
         this.scaleFactor = 2.0;
     }
 
@@ -104,6 +106,9 @@ class MyScene extends CGFscene {
 
         if (this.displayHouse)
             this.house.display();
+
+        if (this.displayVoxelHill)
+            this.hill.display();
 
         this.popMatrix();
 
