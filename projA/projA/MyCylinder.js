@@ -30,8 +30,8 @@ class MyCylinder extends CGFobject {
 			this.vertices.push(ca, 1, sa); //0 //4
 			this.vertices.push(ca, 0, sa); //3 //7
 
-			this.texCoords.push(2*Math.PI*ang, 1);
-			this.texCoords.push(2*Math.PI*ang, 0);
+			this.texCoords.push(ang/(Math.PI*2), 1);
+			this.texCoords.push(ang/(Math.PI*2), 0);
 
 			var normal= [
 				ca,

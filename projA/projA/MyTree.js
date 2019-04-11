@@ -17,6 +17,8 @@ class MyTree extends CGFobject {
 
         this.scene.cylinder = new MyCylinder(this.scene, 8);
         this.scene.cone = new MyCone(this.scene, 8), 1;
+
+        this.initMaterials();
     }
     initMaterials() {
 
@@ -26,12 +28,25 @@ class MyTree extends CGFobject {
         //------ Applied Material
         this.trunkMaterial = new CGFappearance(this.scene);
         this.trunkMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-    this.trunkMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.trunkMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.trunkMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.trunkMaterial.setShininess(10.0);
         this.trunkMaterial.loadTexture(this.trunkTexture);
         this.trunkMaterial.setTexture(this.textureTrunk);
         this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        //------ Textures
+        this.textureTop = new CGFtexture(this.scene, this.treeTopTexture);
+
+        //------ Applied Material
+        this.topMaterial = new CGFappearance(this.scene);
+        this.topMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.topMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.topMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.topMaterial.setShininess(10.0);
+        this.topMaterial.loadTexture(this.treeTopTexture);
+        this.topMaterial.setTexture(this.textureTop);
+        this.topMaterial.setTextureWrap('REPEAT', 'REPEAT');
         //------
 
     }
@@ -39,9 +54,14 @@ class MyTree extends CGFobject {
     {
 
         this.scene.pushMatrix();
+
+        this.trunkMaterial.apply();
+
         this.scene.scale(this.trunkRadius, this.trunkHeight, this.trunkRadius);
         this.scene.cylinder.display();
         this.scene.popMatrix();
+
+        this.topMaterial.apply();
 
         this.scene.pushMatrix();
         this.scene.translate(0, this.trunkHeight, 0);

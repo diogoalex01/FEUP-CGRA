@@ -34,10 +34,10 @@ class MyPrism extends CGFobject {
 			this.vertices.push(caa, 0, saa); //2 //6
 			this.vertices.push(ca, 0, sa); //3 //7
 
-			this.texCoords.push(2*Math.PI*ang, 1);
-			this.texCoords.push(2*Math.PI*(ang+alphaAng), 1);
-			this.texCoords.push(2*Math.PI*(ang+alphaAng), 0);
-			this.texCoords.push(2*Math.PI*ang, 0);
+			this.texCoords.push(ang/(2*Math.PI), 1);
+			this.texCoords.push((ang+alphaAng)/(2*Math.PI), 1);
+			this.texCoords.push((ang+alphaAng)/(2*Math.PI), 0);
+			this.texCoords.push(ang/(2*Math.PI), 0);
 
 			this.indices.push(4*i, (4*i+1) , (4*i+2));
 			this.indices.push((4*i), (4*i+2) , (4*i+3));

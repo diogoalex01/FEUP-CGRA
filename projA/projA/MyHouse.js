@@ -12,9 +12,96 @@ class MyHouse extends CGFobject {
         this.scene.pyramid = new MyPyramid(this.scene, 4, 1);
         this.scene.prism = new MyPrism(this.scene, 10);
         this.scene.cylinder = new MyCylinder(this.scene, 10);
+
+        this.initMaterials();
+    }
+
+    initMaterials() {
+
+        //------ Textures
+        this.textureStair = new CGFtexture(this.scene, 'images/stairs.jpg');
+
+        //------ Applied Material
+        this.StairsMaterial = new CGFappearance(this.scene);
+        this.StairsMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.StairsMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.StairsMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.StairsMaterial.setShininess(10.0);
+        this.StairsMaterial.loadTexture('images/stairs.jpg');
+        this.StairsMaterial.setTexture(this.textureStair);
+        this.StairsMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        //------ Textures
+        this.textureMarble = new CGFtexture(this.scene, 'images/marble.jpg');
+
+        //------ Applied Material
+        this.columnMaterial = new CGFappearance(this.scene);
+        this.columnMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.columnMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.columnMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.columnMaterial.setShininess(10.0);
+        this.columnMaterial.loadTexture('images/marble.jpg');
+        this.columnMaterial.setTexture(this.textureMarble);
+        this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+                //------ Textures
+        this.textureRoof = new CGFtexture(this.scene, 'images/roof.jpg');
+
+        //------ Applied Material
+        this.roofMaterial = new CGFappearance(this.scene);
+        this.roofMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.roofMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.roofMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.roofMaterial.setShininess(10.0);
+        this.roofMaterial.loadTexture('images/roof.jpg');
+        this.roofMaterial.setTexture(this.textureRoof);
+        this.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        //------ Textures
+        this.textureWall = new CGFtexture(this.scene, 'images/wall.jpg');
+
+        //------ Applied Material
+        this.wallMaterial = new CGFappearance(this.scene);
+        this.wallMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.wallMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.wallMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.wallMaterial.setShininess(10.0);
+        this.wallMaterial.loadTexture('images/wall.jpg');
+        this.wallMaterial.setTexture(this.textureWall);
+        this.wallMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        //------
+
+        //------ Textures
+        this.texturePole = new CGFtexture(this.scene, 'images/metal.jpg');
+
+        //------ Applied Material
+        this.poleMaterial = new CGFappearance(this.scene);
+        this.poleMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.poleMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.poleMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.poleMaterial.setShininess(10.0);
+        this.poleMaterial.loadTexture('images/metal.jpg');
+        this.poleMaterial.setTexture(this.texturePole);
+        this.poleMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        //------ Textures
+        this.textureFlag = new CGFtexture(this.scene, 'images/flag.png');
+
+        //------ Applied Material
+        this.flagMaterial = new CGFappearance(this.scene);
+        this.flagMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.flagMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.flagMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.flagMaterial.setShininess(10.0);
+        this.flagMaterial.loadTexture('images/flag.png');
+        this.flagMaterial.setTexture(this.textureFlag);
+        this.flagMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        //------
     }
 
     display() {
+
+        this.StairsMaterial.apply();
 
         // first stair tread
         this.scene.pushMatrix();
@@ -35,6 +122,9 @@ class MyHouse extends CGFobject {
         this.scene.scale(5.5, 0.125, 3.5);
         this.scene.cubeQuad.display();
         this.scene.popMatrix();
+
+
+        this.columnMaterial.apply();
 
         // left columns
         for (var i = 0; i < 5.2; i+= 0.3713) {
@@ -79,6 +169,9 @@ class MyHouse extends CGFobject {
         this.scene.cubeQuad.display();
         this.scene.popMatrix();
 
+
+        this.roofMaterial.apply();
+
         // roof
         this.scene.pushMatrix();
         this.scene.translate(0, 1.3135, 0);
@@ -87,6 +180,9 @@ class MyHouse extends CGFobject {
         this.scene.pyramid.display();
         this.scene.popMatrix();
 
+
+        this.wallMaterial.apply();
+
         // inner building
         this.scene.pushMatrix();
         this.scene.translate(0, 0.75, 0);
@@ -94,12 +190,18 @@ class MyHouse extends CGFobject {
         this.scene.cubeQuad.display();
         this.scene.popMatrix();
 
+        
+        this.poleMaterial.apply();
+
         // flag pole
         this.scene.pushMatrix();
         this.scene.translate(0, 2, 0);
         this.scene.scale(0.01, 0.75, 0.01);
         this.scene.cylinder.display();
         this.scene.popMatrix();
+
+
+        this.flagMaterial.apply();
 
         // flag
         this.scene.pushMatrix();

@@ -8,9 +8,9 @@ class MyTreeRowPatch extends CGFobject {
         super(scene);
         //this.scene = scene;
 
-        this.scene.treeSmall = new MyTree(this.scene, 0.6, 0.2 ,0.8,0.3);
-        this.scene.treeMedium = new MyTree(this.scene, 0.8,0.3,1,0.5);
-        this.scene.treeLarge = new MyTree(this.scene, 1,0.4,1.2,0.8);
+        this.scene.treeSmall = new MyTree(this.scene, 0.6, 0.1 ,0.8,0.3,'images/wood.jpg', 'images/leaves.png');
+        this.scene.treeMedium = new MyTree(this.scene, 0.8,0.2,1,0.5,'images/wood.jpg', 'images/leaves.png');
+        this.scene.treeLarge = new MyTree(this.scene, 1,0.3,1.2,0.8,'images/wood.jpg', 'images/leaves.png');
  
     }
     display() 
