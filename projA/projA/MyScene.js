@@ -29,6 +29,7 @@ class MyScene extends CGFscene {
         this.treeGroup = new MyTreeGroupPatch(this);
         this.treeRow = new MyTreeRowPatch(this);
         this.hill = new MyVoxelHill(this, 5);
+        this.cubemap = new MyCubeMap(this);
 
         //Other variables connected to MyInterface
         this.selectedObject = 0;
@@ -39,6 +40,7 @@ class MyScene extends CGFscene {
         this.displayTreeRow = false;
         this.displayHouse = false;
         this.displayVoxelHill = false;
+        this.displayCubeMap = false;
         this.scaleFactor = 2.0;
     }
 
@@ -83,12 +85,14 @@ class MyScene extends CGFscene {
             this.cylinder.enableNormalViz();
             this.tree.enableNormalViz();
             this.house.enableNormalViz();
+            this.cubemap.enableNormalViz();
         }
         else {
             this.prism.disableNormalViz();
             this.cylinder.disableNormalViz();
             this.tree.disableNormalViz();
             this.house.disableNormalViz();
+            this.cubemap.disableNormalViz();
         }
 
         // ---- BEGIN Primitive drawing section
@@ -110,6 +114,9 @@ class MyScene extends CGFscene {
 
         if (this.displayVoxelHill)
             this.hill.display();
+
+        if (this.displayCubeMap)
+            this.cubemap.display();
 
         this.popMatrix();
 

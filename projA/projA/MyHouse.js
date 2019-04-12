@@ -27,7 +27,6 @@ class MyHouse extends CGFobject {
         this.StairsMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.StairsMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.StairsMaterial.setShininess(10.0);
-        this.StairsMaterial.loadTexture('images/stairs.jpg');
         this.StairsMaterial.setTexture(this.textureStair);
         this.StairsMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -40,7 +39,6 @@ class MyHouse extends CGFobject {
         this.columnMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.columnMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.columnMaterial.setShininess(10.0);
-        this.columnMaterial.loadTexture('images/marble.jpg');
         this.columnMaterial.setTexture(this.textureMarble);
         this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -53,7 +51,6 @@ class MyHouse extends CGFobject {
         this.roofMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.roofMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.roofMaterial.setShininess(10.0);
-        this.roofMaterial.loadTexture('images/roof.jpg');
         this.roofMaterial.setTexture(this.textureRoof);
         this.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -66,7 +63,6 @@ class MyHouse extends CGFobject {
         this.wallMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.wallMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.wallMaterial.setShininess(10.0);
-        this.wallMaterial.loadTexture('images/wall.jpg');
         this.wallMaterial.setTexture(this.textureWall);
         this.wallMaterial.setTextureWrap('REPEAT', 'REPEAT');
         //------
@@ -80,7 +76,6 @@ class MyHouse extends CGFobject {
         this.poleMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.poleMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.poleMaterial.setShininess(10.0);
-        this.poleMaterial.loadTexture('images/metal.jpg');
         this.poleMaterial.setTexture(this.texturePole);
         this.poleMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
@@ -93,7 +88,6 @@ class MyHouse extends CGFobject {
         this.flagMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.flagMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.flagMaterial.setShininess(10.0);
-        this.flagMaterial.loadTexture('images/flag.png');
         this.flagMaterial.setTexture(this.textureFlag);
         this.flagMaterial.setTextureWrap('REPEAT', 'REPEAT');
         //------
@@ -122,7 +116,6 @@ class MyHouse extends CGFobject {
         this.scene.scale(5.5, 0.125, 3.5);
         this.scene.cubeQuad.display();
         this.scene.popMatrix();
-
 
         this.columnMaterial.apply();
 
@@ -169,7 +162,6 @@ class MyHouse extends CGFobject {
         this.scene.cubeQuad.display();
         this.scene.popMatrix();
 
-
         this.roofMaterial.apply();
 
         // roof
@@ -180,7 +172,6 @@ class MyHouse extends CGFobject {
         this.scene.pyramid.display();
         this.scene.popMatrix();
 
-
         this.wallMaterial.apply();
 
         // inner building
@@ -190,7 +181,6 @@ class MyHouse extends CGFobject {
         this.scene.cubeQuad.display();
         this.scene.popMatrix();
 
-        
         this.poleMaterial.apply();
 
         // flag pole
@@ -200,13 +190,13 @@ class MyHouse extends CGFobject {
         this.scene.cylinder.display();
         this.scene.popMatrix();
 
-
         this.flagMaterial.apply();
 
         // flag
         this.scene.pushMatrix();
         this.scene.translate(0, 2.6, -0.225);
         this.scene.scale(0.01, 0.3, 0.45);
+        this.scene.rotate(3 * Math.PI / 2, 1, 0, 0);
         this.scene.cubeQuad.display();
         this.scene.popMatrix();
     }
