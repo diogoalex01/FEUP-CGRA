@@ -18,6 +18,9 @@ class MyVoxelHill extends CGFobject {
         for (var lvl = 1; lvl < this.levels + 1; lvl++) {
             for (var i = -(lvl - 1); i < lvl; i++) {
                 for (var k = lvl - 1; k > -lvl; k--) {
+                    if (Math.abs(k) + 1 != lvl && Math.abs(i) + 1 != lvl)
+                        continue;
+
                     this.scene.pushMatrix();
                     this.scene.translate(i, -lvl + this.levels, k);
                     this.scene.cubeQuad.display();
