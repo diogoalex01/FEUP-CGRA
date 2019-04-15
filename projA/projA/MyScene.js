@@ -29,7 +29,7 @@ class MyScene extends CGFscene {
         this.treeGroup = new MyTreeGroupPatch(this);
         this.treeRow = new MyTreeRowPatch(this);
         this.hill = new MyVoxelHill(this, 5);
-        this.cubemap = new MyCubeMap(this);
+        this.finalScene = new MyFinalScene(this);
 
         //Other variables connected to MyInterface
         this.selectedObject = 0;
@@ -40,20 +40,33 @@ class MyScene extends CGFscene {
         this.displayTreeRow = false;
         this.displayHouse = false;
         this.displayVoxelHill = false;
-        this.displayCubeMap = false;
-        this.scaleFactor = 2.0;
+        this.displayFinalScene = false;
+        this.scaleFactor = 0.2;
+        this.ambientFactor = 0.8;
     }
 
     initLights() {
-        this.lights[0].setPosition(15, 2, 5, 1);
+
+        this.lights[0].setPosition(2.0, 2.0, -1.0, 1.0);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[0].enable();
+        this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].disable();
+        this.lights[0].setVisible(true);
         this.lights[0].update();
+
+        this.lights[1].setPosition(0.0, -1.0, 2.0, 1.0);
+        this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.lights[1].setSpecular(1.0, 1.0, 0.0, 1.0);
+        this.lights[1].disable();
+        this.lights[1].setVisible(true);
+        this.lights[1].update();
+
     }
 
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
+
 
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -73,6 +86,10 @@ class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
+        this.lights[0].update();
+        this.lights[1].update();
+        this.setGlobalAmbientLight(this.ambientFactor,this.ambientFactor,this.ambientFactor,1);
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
@@ -85,14 +102,12 @@ class MyScene extends CGFscene {
             this.cylinder.enableNormalViz();
             this.tree.enableNormalViz();
             this.house.enableNormalViz();
-            this.cubemap.enableNormalViz();
         }
         else {
             this.prism.disableNormalViz();
             this.cylinder.disableNormalViz();
             this.tree.disableNormalViz();
             this.house.disableNormalViz();
-            this.cubemap.disableNormalViz();
         }
 
         // ---- BEGIN Primitive drawing section
@@ -115,8 +130,8 @@ class MyScene extends CGFscene {
         if (this.displayVoxelHill)
             this.hill.display();
 
-        if (this.displayCubeMap)
-            this.cubemap.display();
+        if (this.displayFinalScene)
+            this.finalScene.display();
 
         this.popMatrix();
 

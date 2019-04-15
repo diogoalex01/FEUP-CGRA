@@ -56,9 +56,9 @@ class MyPyramid extends CGFobject {
 
             this.indices.push(3*i, (3*i+1) , (3*i+2) );
 
-            this.texCoords.push(1, 1);
-			this.texCoords.push((ang+alphaAng)/(2*Math.PI), 0);
-			this.texCoords.push(ang/(2*Math.PI), 0);
+            this.texCoords.push(0.5, 0);
+			this.texCoords.push(0, 1);
+			this.texCoords.push(1, 1);
 
             ang+=alphaAng;
         }
