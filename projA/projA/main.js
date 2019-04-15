@@ -17,7 +17,8 @@ serialInclude(['../lib/CGF.js',
     'MyTreeRowPatch.js',
     'MyVoxelHill.js',
     'MyCubeMap.js',
-    'MyfinalScene.js',
+    'MyFinalScene.js',
+    'MyCampFire.js',
 
     main = function () {
         var app = new CGFapplication(document.body);

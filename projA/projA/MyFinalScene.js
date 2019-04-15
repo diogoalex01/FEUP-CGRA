@@ -18,6 +18,7 @@ class MyFinalScene extends CGFobject {
         this.scene.smallHill = new MyVoxelHill(this.scene, 8);
         this.scene.mediumHill = new MyVoxelHill(this.scene, 9);
         this.scene.largeHill = new MyVoxelHill(this.scene, 10);
+        this.scene.campFire = new MyCampFire(this.scene);
 
     }
          
@@ -36,6 +37,18 @@ class MyFinalScene extends CGFobject {
         this.mapMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
         //------ Textures
+        this.textureNight = new CGFtexture(this.scene, 'images/cubeNight.png');
+
+        //------ Applied Material
+        this.nightMaterial = new CGFappearance(this.scene);
+        this.nightMaterial.setAmbient(1, 1, 1, 1);
+        this.nightMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.nightMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.nightMaterial.setShininess(10.0);
+        this.nightMaterial.setTexture(this.textureNight);
+        this.nightMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        //------ Textures
         this.textureQuad = new CGFtexture(this.scene, 'images/quad.png');
 
         //------ Applied Material
@@ -46,6 +59,18 @@ class MyFinalScene extends CGFobject {
         this.quadMaterial.setShininess(10.0);
         this.quadMaterial.setTexture(this.textureQuad);
         this.quadMaterial.setTextureWrap('REPEAT', 'REPEAT');
+
+        //------ Textures
+        this.textureWater = new CGFtexture(this.scene, 'images/water.jpg');
+
+        //------ Applied Material
+        this.waterMaterial = new CGFappearance(this.scene);
+        this.waterMaterial.setAmbient(1, 1, 1, 1);
+        this.waterMaterial.setDiffuse(0.1, 0.1, 0.1, 1);
+        this.waterMaterial.setSpecular(0.9, 0.9, 0.9, 1);
+        this.waterMaterial.setShininess(10.0);
+        this.waterMaterial.setTexture(this.textureWater);
+        this.waterMaterial.setTextureWrap('REPEAT', 'REPEAT');
         
     }
 
@@ -53,8 +78,9 @@ class MyFinalScene extends CGFobject {
     display() {
 
         //Draw background
-        this.scene.pushMatrix();
+        //this.scene.pushMatrix();
         this.mapMaterial.apply();
+        this.nightMaterial.apply();
         this.scene.cubeMap.display();
         this.scene.popMatrix();
 
@@ -75,7 +101,7 @@ class MyFinalScene extends CGFobject {
 
         //Draw bigHill
         this.scene.pushMatrix();
-        this.scene.translate(-18,0.6,-18);
+        this.scene.translate(-16,0.6,-18);
         this.scene.scale(1.2,1.2,1.2);  
         this.scene.largeHill.display();    
         this.scene.popMatrix();
@@ -103,14 +129,14 @@ class MyFinalScene extends CGFobject {
 
         //Draw treeRowPatch
         this.scene.pushMatrix();
-        this.scene.translate(-25,0.6,2);
+        this.scene.translate(-22,0.6,2);
         this.scene.scale(3,3.2,3);  
         this.scene.treeRow.display();    
         this.scene.popMatrix();
 
         //Draw treeRowPatch
         this.scene.pushMatrix();
-        this.scene.translate(-18,0.6,3);
+        this.scene.translate(-16,0.6,3);
         this.scene.scale(3,3.2,3);  
         this.scene.treeRow.display();    
         this.scene.popMatrix();
@@ -122,9 +148,9 @@ class MyFinalScene extends CGFobject {
         this.scene.treeGroup.display();    
         this.scene.popMatrix(); 
 
-        //Draw treeGroup
+        //Draw treeRow
         this.scene.pushMatrix();
-        this.scene.translate(-20,0.6,18);
+        this.scene.translate(-18,0.6,18);
         this.scene.rotate(Math.PI/2,0,1,0); 
         this.scene.scale(3.5,4.2,3.5);  
         this.scene.treeRow.display();    
@@ -148,19 +174,36 @@ class MyFinalScene extends CGFobject {
 
         //Draw treeRowPatch
         this.scene.pushMatrix();
-        this.scene.translate(-18,0.6,24);
+        this.scene.translate(-16,0.6,24);
         this.scene.rotate(Math.PI/2,0,1,0);
-        this.scene.scale(3,3.2,3);  
+        this.scene.scale(2,2.2,2);  
         this.scene.treeRow.display();    
         this.scene.popMatrix();
 
         //Draw treeRowPatch
         this.scene.pushMatrix();
-        this.scene.translate(-25,0.6,25);
+        this.scene.translate(-19,0.6,25);
         this.scene.rotate(Math.PI/2,0,1,0);
         this.scene.scale(3,3.2,3);  
         this.scene.treeRow.display();    
-        this.scene.popMatrix();        
+        this.scene.popMatrix();      
+        
+        //Draw campFire
+        this.scene.pushMatrix();
+        this.scene.translate(0,0.6,10);
+        this.scene.scale(1,1.5,1);
+        this.scene.campFire.display();
+        this.scene.popMatrix();
+
+        this.waterMaterial.apply();
+
+        //Draw pool
+        this.scene.pushMatrix();
+        this.scene.translate(-28.5,0.8,0);
+        this.scene.scale(3,1,61);       
+        this.scene.rotate(-Math.PI/2,1,0,0);
+        this.scene.quad.display();
+        this.scene.popMatrix();
     }
 
     updateBuffers(complexity) {

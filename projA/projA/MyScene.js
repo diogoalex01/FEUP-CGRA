@@ -132,6 +132,7 @@ class MyScene extends CGFscene {
 
         if (this.displayFinalScene)
             this.finalScene.display();
+            
 
         this.popMatrix();
 

@@ -36,8 +36,8 @@ class MyHouse extends CGFobject {
         //------ Applied Material
         this.columnMaterial = new CGFappearance(this.scene);
         this.columnMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.columnMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.columnMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.columnMaterial.setDiffuse(0.4, 0.4, 0.4, 1);
+        this.columnMaterial.setSpecular(0.9, 0.9, 0.9, 1);
         this.columnMaterial.setShininess(10.0);
         this.columnMaterial.setTexture(this.textureMarble);
         this.columnMaterial.setTextureWrap('REPEAT', 'REPEAT');
@@ -73,8 +73,8 @@ class MyHouse extends CGFobject {
         //------ Applied Material
         this.poleMaterial = new CGFappearance(this.scene);
         this.poleMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.poleMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.poleMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.poleMaterial.setDiffuse(0.2, 0.2, 0.2, 1);
+        this.poleMaterial.setSpecular(0.9, 0.9, 0.9, 1);
         this.poleMaterial.setShininess(10.0);
         this.poleMaterial.setTexture(this.texturePole);
         this.poleMaterial.setTextureWrap('REPEAT', 'REPEAT');
