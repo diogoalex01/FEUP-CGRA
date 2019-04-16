@@ -44,7 +44,7 @@ class MyScene extends CGFscene {
         this.displayFinalScene = false;
         this.displayTextures = true;
         this.scaleFactor = 0.2;
-        this.ambientFactor = 0.8;
+        this.ambientFactor = 0.9;
 
         //Other variables connected to MyInterface
         this.selectedDayMode = 0;
@@ -55,22 +55,23 @@ class MyScene extends CGFscene {
     initLights() {
 
         // sun light
-        this.lights[0].setPosition(0.0, 5.0, 0.0, 1.0);
-        this.lights[0].setDiffuse(0.9, 0.7, 0.2, 1.0);
-        this.lights[0].setSpecular(0.9, 0.7, 0.2, 1.0);
+        this.lights[0].setPosition(0, 90.0, 0, 1.0);
+        this.lights[0].setDiffuse(1, 0.90, 0.7, 1.0);
+        this.lights[0].setSpecular(1, 0.90, 0.7, 1.0);
         this.lights[0].setConstantAttenuation(0.1);
-        this.lights[0].setLinearAttenuation(0.1);
-        this.lights[0].setQuadraticAttenuation(0.1);
+        //this.lights[0].setLinearAttenuation(0.1);
+        //this.lights[0].setQuadraticAttenuation(0.1);
+        this.lights[0].setVisible(true);
         this.lights[0].enable();
         this.lights[0].update();
 
         // moon light
-        this.lights[1].setPosition(0.0, 5.0, 0.0, 1.0);
+        this.lights[1].setPosition(0.0, 70.0, 0.0, 1.0);
         this.lights[1].setDiffuse(0.2, 0.7, 0.9, 1.0);
         this.lights[1].setSpecular(0.2, 0.7, 0.9, 1.0);
-        this.lights[1].setConstantAttenuation(0.2);
+        //this.lights[1].setConstantAttenuation(0.4);
         this.lights[1].setLinearAttenuation(0.2);
-        this.lights[1].setQuadraticAttenuation(0.2);
+        //this.lights[1].setQuadraticAttenuation(0.2);
         this.lights[1].disable();
         this.lights[1].update();
 
@@ -78,9 +79,9 @@ class MyScene extends CGFscene {
         this.lights[2].setPosition(-0.1, 1.5, 1.9, 1.0);
         this.lights[2].setDiffuse(0.9, 0.7, 0.2, 1.0);
         this.lights[2].setSpecular(0.9, 0.7, 0.2, 1.0);
-        this.lights[2].setConstantAttenuation(0.7);
-        this.lights[2].setLinearAttenuation(0.7);
-        this.lights[2].setQuadraticAttenuation(0.7);
+        //this.lights[2].setConstantAttenuation(0.9);
+        this.lights[2].setLinearAttenuation(0.5);
+        //this.lights[2].setQuadraticAttenuation(0.7);
         this.lights[2].disable();
         this.lights[2].update();
 
@@ -100,11 +101,13 @@ class MyScene extends CGFscene {
     //Function that resets selected day mode
     updateDayMode() {
         if (this.selectedDayMode == 1) { // night
+            this.ambientFactor = 0.3;
             this.lights[0].disable();
             this.lights[1].enable();
             this.lights[2].enable();
         }
         else if (this.selectedDayMode == 0) { // day
+            this.ambientFactor = 0.9;
             this.lights[0].enable();
             this.lights[1].disable();
             this.lights[2].disable();
@@ -132,7 +135,7 @@ class MyScene extends CGFscene {
             this.axis.display();
 
         //Apply default appearance
-        this.setDefaultAppearance();
+        //this.setDefaultAppearance();
 
         if (this.displayNormals) {
             this.prism.enableNormalViz();
