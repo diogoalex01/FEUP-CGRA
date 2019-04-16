@@ -44,7 +44,7 @@ class MyScene extends CGFscene {
         this.displayFinalScene = false;
         this.displayTextures = true;
         this.scaleFactor = 0.2;
-        this.ambientFactor = 0.9;
+        this.ambientFactor = 0.2;
 
         //Other variables connected to MyInterface
         this.selectedDayMode = 0;
@@ -101,13 +101,11 @@ class MyScene extends CGFscene {
     //Function that resets selected day mode
     updateDayMode() {
         if (this.selectedDayMode == 1) { // night
-            this.ambientFactor = 0.3;
             this.lights[0].disable();
             this.lights[1].enable();
             this.lights[2].enable();
         }
         else if (this.selectedDayMode == 0) { // day
-            this.ambientFactor = 0.9;
             this.lights[0].enable();
             this.lights[1].disable();
             this.lights[2].disable();
