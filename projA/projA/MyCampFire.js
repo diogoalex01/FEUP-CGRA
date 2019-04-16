@@ -12,6 +12,7 @@ class MyCampFire extends CGFobject {
 
         this.initMaterials();
     }
+
     initMaterials() {
 
         //------ Textures
@@ -41,69 +42,70 @@ class MyCampFire extends CGFobject {
         //------
 
     }
-    display() 
-    {
+
+    display() {
 
         this.trunkMaterial.apply();
 
         this.scene.pushMatrix();
-        this.scene.translate(1.5,0,0.5);
-        this.scene.rotate(Math.PI/2,0,0,1);
+        this.scene.translate(1.5, 0, 0.5);
+        this.scene.rotate(Math.PI / 2, 0, 0, 1);
         this.scene.scale(0.3, 4, 0.3);
         this.scene.cylinder.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(1.5,0,-1.5);
-        this.scene.rotate(Math.PI/2,0,0,1);
+        this.scene.translate(1.5, 0, -1.5);
+        this.scene.rotate(Math.PI / 2, 0, 0, 1);
         this.scene.scale(0.3, 4, 0.3);
         this.scene.cylinder.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(0.8,0,-2);
-        this.scene.rotate(Math.PI/2,1,0,0);
+        this.scene.translate(0.8, 0, -2);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.scene.scale(0.3, 3, 0.3);
         this.scene.cylinder.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(-2,0,-2);
-        this.scene.rotate(Math.PI/2,1,0,0);
+        this.scene.translate(-2, 0, -2);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.scene.scale(0.3, 3, 0.3);
         this.scene.cylinder.display();
         this.scene.popMatrix();
-        
+
         this.scene.pushMatrix();
-        this.scene.translate(0.8,0,-2);
-        this.scene.rotate(Math.PI/2,1,0,1);
+        this.scene.translate(0.8, 0, -2);
+        this.scene.rotate(Math.PI / 2, 1, 0, 1);
         this.scene.scale(0.3, 4, 0.3);
         this.scene.cylinder.display();
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
-        this.scene.translate(-2,0,-2);
-        this.scene.rotate(Math.PI/2,1,0,-1);
+        this.scene.translate(-2, 0, -2);
+        this.scene.rotate(Math.PI / 2, 1, 0, -1);
         this.scene.scale(0.3, 4, 0.3);
         this.scene.cylinder.display();
-        this.scene.popMatrix();  
+        this.scene.popMatrix();
 
         this.fireMaterial.apply();
 
         this.scene.pushMatrix();
-        this.scene.translate(-0.6,0,-0.7);
+        this.scene.translate(-0.6, 0, -0.7);
         this.scene.scale(1, 2, 1);
         this.scene.cone.display();
-        this.scene.popMatrix();  
+        this.scene.popMatrix();
 
-      /*  this.topMaterial.apply();
-
+        /*  
+        this.topMaterial.apply();
         this.scene.pushMatrix();
         this.scene.translate(0, this.trunkHeight, 0);
         this.scene.scale(this.treeTopRadius, this.treeTopHeight, this.treeTopRadius);
         this.scene.cone.display();
-        this.scene.popMatrix();*/
-        
+        this.scene.popMatrix();
+        */
+
     }
 
     updateBuffers(complexity) {
