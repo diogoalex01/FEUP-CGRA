@@ -9,15 +9,15 @@ uniform sampler2D uSampler2;
 uniform float timeFactor;
 
 void main() {
-	vec2 temp =  vTextureCoord + vec2(timeFactor*.01,0.0);
+	vec2 temp =  vTextureCoord + vec2(timeFactor*.01, 0.0);
 	vec4 color = texture2D(uSampler, temp);
-	temp.x = mod(temp.x,1.0);
+	temp.x = mod(temp.x, 1.0);
 	vec4 filter = texture2D(uSampler2, vec2(0.0,0.1) + temp);
 
 	if (filter.b > 0.5) {
-		color.r -= 0.05;
-		color.g -= 0.05;
-		color.b -= 0.05;
+		color.r -= 0.07;
+		color.g -= 0.07;
+		color.b -= 0.07;
 	}
 	
 	gl_FragColor = color;

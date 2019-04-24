@@ -32,7 +32,7 @@ class ShaderScene extends CGFscene {
 		this.axis = new CGFaxis(this);
 		this.enableTextures(true);
 
-		this.objects=[
+		this.objects = [
 			new Teapot(this),
 			new Plane(this, 50)
 		];
@@ -56,13 +56,11 @@ class ShaderScene extends CGFscene {
 		this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
 		this.texture2 = new CGFtexture(this, "textures/waterMap.jpg");
-		//this.texture4 = new CGFtexture(this, "textures/waterTex.jpg");
-		//this.texture5 = new CGFtexture(this, "textures/waterMap.jpg");
 
 		// shaders initialization
-
+		
 		this.testShaders = [
-			new CGFshader(this.gl, "shaders/flat.vert", "shaders/flat.frag"),
+			new CGFshader(this.gl, "shaders/flat.vert", "shaders/flat.frag"), //0
 			new CGFshader(this.gl, "shaders/uScale.vert", "shaders/uScale.frag"),
 			new CGFshader(this.gl, "shaders/varying.vert", "shaders/varying.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/texture1.frag"),
@@ -76,7 +74,7 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/ex5sepia.frag"),
 			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag"),
 			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag"),
-			new CGFshader(this.gl, "shaders/ex2.4anim.vert", "shaders/ex2.4anim.frag")
+			new CGFshader(this.gl, "shaders/ex2.4anim.vert", "shaders/ex2.4anim.frag") //14
 		];
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
@@ -103,12 +101,12 @@ class ShaderScene extends CGFscene {
 			'Animation example': 6,
 			'Sepia': 7,
 			'Convolution': 8,
-			'Ex. 1.1' : 9,
-			'Ex. 1.2' : 10,
-			'Ex. 1.3' : 11,
-			'Ex. 2.1' : 12,
-			'Ex. 2.3' : 13,
-			'Ex. 2.4' : 14						
+			'Ex. 1.1': 9,
+			'Ex. 1.2': 10,
+			'Ex. 1.3': 11,
+			'Ex. 2.1': 12,
+			'Ex. 2.3': 13,
+			'Ex. 2.4': 14
 		};
 
 		// shader code panels references
@@ -132,7 +130,7 @@ class ShaderScene extends CGFscene {
 	initCameras() {
 		this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(20, 20, 100), vec3.fromValues(0, 0, 0));
 	};
-	
+
 	// initialize lights
 	initLights() {
 
@@ -178,7 +176,6 @@ class ShaderScene extends CGFscene {
 			this.objects[this.selectedObject].setLineMode();
 		else
 			this.objects[this.selectedObject].setFillMode();
-
 	}
 
 	// called when the scale factor changes on the interface
@@ -193,7 +190,7 @@ class ShaderScene extends CGFscene {
 			this.testShaders[6].setUniformsValues({ timeFactor: t / 100 % 1000 });
 		if (this.selectedExampleShader == 10)
 			this.testShaders[10].setUniformsValues({ timeFactor: t / 100 % 1000 });
-			if (this.selectedExampleShader == 14)
+		if (this.selectedExampleShader == 14)
 			this.testShaders[14].setUniformsValues({ timeFactor: t / 100 % 1000 });
 	}
 
@@ -226,30 +223,29 @@ class ShaderScene extends CGFscene {
 
 		// bind additional texture to texture unit 1
 		this.texture2.bind(1);
-		//this.texture4.bind(4);
 
 		//Uncomment following lines in case texture must have wrapping mode 'REPEAT'
 		//this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
 		//this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_T, this.gl.REPEAT);
 
-		if (this.selectedObject==0) {
-			// teapot (scaled and rotated to conform to our axis)
+		if (this.selectedObject == 0) {
+		// teapot (scaled and rotated to conform to our axis)
 
 			this.pushMatrix();
-	
+
 			this.translate(0, -6, 0);
 			this.scale(0.5, 0.5, 0.5);
 			this.rotate(-Math.PI / 2, 1, 0, 0);
 			this.objects[0].display();
-	
+
 			this.popMatrix();
 		}
 		else {
 			this.pushMatrix();
-			
+
 			this.scale(25, 25, 25);
 			this.objects[1].display();
-			
+
 			this.popMatrix();
 		}
 
