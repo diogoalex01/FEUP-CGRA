@@ -51,16 +51,13 @@ class ShaderScene extends CGFscene {
 		this.appearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.appearance.setShininess(120);
 
-		this.texture = new CGFtexture(this, "textures/texture.jpg");
+		this.texture = new CGFtexture(this, "textures/waterTex.jpg");
 		this.appearance.setTexture(this.texture);
 		this.appearance.setTextureWrap('REPEAT', 'REPEAT');
 
-		this.texture = new CGFtexture(this, "textures/texture.jpg");
-		this.appearance.setTexture(this.texture);
-		this.appearance.setTextureWrap('REPEAT', 'REPEAT');
-
-		this.texture2 = new CGFtexture(this, "textures/FEUP.jpg");
-		this.texture4 = new CGFtexture(this, "textures/waterMap.jpg");
+		this.texture2 = new CGFtexture(this, "textures/waterMap.jpg");
+		//this.texture4 = new CGFtexture(this, "textures/waterTex.jpg");
+		//this.texture5 = new CGFtexture(this, "textures/waterMap.jpg");
 
 		// shaders initialization
 
@@ -77,7 +74,9 @@ class ShaderScene extends CGFscene {
 			new CGFshader(this.gl, "shaders/flatex5.vert", "shaders/flatex5.frag"),
 			new CGFshader(this.gl, "shaders/ex5anim.vert", "shaders/ex5anim.frag"),
 			new CGFshader(this.gl, "shaders/texture1.vert", "shaders/ex5sepia.frag"),
-			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag")
+			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag"),
+			new CGFshader(this.gl, "shaders/water.vert", "shaders/water.frag"),
+			new CGFshader(this.gl, "shaders/ex2.4anim.vert", "shaders/ex2.4anim.frag")
 		];
 
 		// additional texture will have to be bound to texture unit 1 later, when using the shader, with "this.texture2.bind(1);"
@@ -88,7 +87,9 @@ class ShaderScene extends CGFscene {
 		this.testShaders[10].setUniformsValues({ uSampler2: 1 });
 		this.testShaders[10].setUniformsValues({ timeFactor: 0 });
 		this.testShaders[12].setUniformsValues({ uSampler2: 1 });
-
+		this.testShaders[13].setUniformsValues({ uSampler2: 1 });
+		this.testShaders[14].setUniformsValues({ uSampler2: 1 });
+		this.testShaders[14].setUniformsValues({ timeFactor: 0 });
 
 		// Shaders interface variables
 
@@ -105,7 +106,9 @@ class ShaderScene extends CGFscene {
 			'Ex. 1.1' : 9,
 			'Ex. 1.2' : 10,
 			'Ex. 1.3' : 11,
-			'Ex. 2.1' : 12
+			'Ex. 2.1' : 12,
+			'Ex. 2.3' : 13,
+			'Ex. 2.4' : 14						
 		};
 
 		// shader code panels references
@@ -190,6 +193,8 @@ class ShaderScene extends CGFscene {
 			this.testShaders[6].setUniformsValues({ timeFactor: t / 100 % 1000 });
 		if (this.selectedExampleShader == 10)
 			this.testShaders[10].setUniformsValues({ timeFactor: t / 100 % 1000 });
+			if (this.selectedExampleShader == 14)
+			this.testShaders[14].setUniformsValues({ timeFactor: t / 100 % 1000 });
 	}
 
 	// main display function
@@ -221,6 +226,7 @@ class ShaderScene extends CGFscene {
 
 		// bind additional texture to texture unit 1
 		this.texture2.bind(1);
+		//this.texture4.bind(4);
 
 		//Uncomment following lines in case texture must have wrapping mode 'REPEAT'
 		//this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_WRAP_S, this.gl.REPEAT);
