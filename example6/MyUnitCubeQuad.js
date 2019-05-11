@@ -103,34 +103,8 @@ class MyUnitCubeQuad extends CGFobject {
 		this.scene.rotate(Math.PI/2,1,0,0);
 		this.scene.rotate(-Math.PI/2,0,1,0);
         this.scene.quad1.display();
-        this.scene.popMatrix();
-
-		/*// Generating normals
-		this.normals = [
-
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1,
-			0, 0, 1,
-
-		];
+		this.scene.popMatrix();
 		
-		/*
-		Texture coords (s,t)
-		+----------> s
-        |
-        |
-		|
-		v
-        t
-        */
-		/*
-		this.texCoords = [
-			0, 1,
-			1, 1,
-			0, 0,
-			1, 0
-		]*/
 	}
 
 	updateBuffers(complexity) {
