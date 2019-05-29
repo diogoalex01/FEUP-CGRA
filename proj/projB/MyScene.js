@@ -12,7 +12,7 @@ class MyScene extends CGFscene {
         this.initCameras();
         this.initLights();
 
-        //Background color
+        // Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
         this.gl.clearDepth(100.0);
@@ -22,67 +22,88 @@ class MyScene extends CGFscene {
         this.enableTextures(true);
         this.setUpdatePeriod(50);
 
-        //Initialize scene objects
+        // Initialize scene objects
         this.axis = new CGFaxis(this);
         this.plane = new Plane(this, 32);
         this.house = new MyHouse(this);
         this.cubeMap = new MyCubeMap(this);
         this.bird = new MyBird(this);
+        this.terrain = new MyTerrain(this);
+        this.lightning = new MyLightning(this);
+        //this.plant = new MyLSPlant(this);
 
-        //Objects connected to MyInterface
+        // Objects connected to MyInterface
         this.selectedObject = 0;
         this.displayAxis = true;
         this.displayNormals = false;
         this.displayHouse = false;
         this.displayBird = true;
-        this.scaleFactor = 4;
-        this.ambientFactor = 0.5;
-        
-        this.speed = 1;
+        this.scaleFactor = 1;
+        this.speedFactor = 1;
+        this.ambientFactor = 0.75;
 
         this.initMaterials();
+
+        this.doGenerate = function () {
+
+            this.plant.generate(
+                this.axiom,
+                {
+                    "F": ["FF"],
+                    "X": ["F[-X][X]F[-X]+FX"]
+                },
+                this.angle,
+                this.iterations,
+                this.scaleFactor
+            );
+        }
+
+        // do initial generation
+        //this.doGenerate();
     }
 
     update(t) {
-        this.bird.dY = 0.25* Math.sin(2*Math.PI*t/1000*this.speed);
-        this.bird.wingRot = Math.PI/4*Math.sin(2*Math.PI*t/1000*this.speed);
+        this.bird.dY = 0.25 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
+        this.bird.wingRot = Math.PI / 4 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
         this.keyInput();
-
         this.bird.moveBird();
     }
 
-    keyInput(){
-        var text="keys pressed; ";
-         
-         if(this.gui.isKeyPressed("KeyW")){
-            text+=" W ";
-            this.bird.accelerateBird(0.1*this.speed);
+    keyInput() {
+        var text = "keys pressed; ";
+
+        if (this.gui.isKeyPressed("KeyW")) {
+            text += " W ";
+            this.bird.accelerate(0.1 * this.speedFactor);
         }
 
-         if(this.gui.isKeyPressed("KeyS")){
-            text+=" S ";
-            this.bird.accelerateBird(-0.1*this.speed);
+        if (this.gui.isKeyPressed("KeyS")) {
+            text += " S ";
+            this.bird.accelerate(-0.1 * this.speedFactor);
         }
 
-         if(this.gui.isKeyPressed("KeyA")){
-            text+=" A ";
-            this.bird.rotateBird(Math.PI/12*this.speed);
+        if (this.gui.isKeyPressed("KeyA")) {
+            text += " A ";
+            this.bird.turn(Math.PI / 12 * this.speedFactor);
         }
 
-         if(this.gui.isKeyPressed("KeyD")){
-            text+=" D ";
-            this.bird.rotateBird(-Math.PI/12*this.speed);
+        if (this.gui.isKeyPressed("KeyD")) {
+            text += " D ";
+            this.bird.turn(-Math.PI / 12 * this.speedFactor);
         }
 
-         /*if(this.gui.isKeyPressed("KeyR")){
-            text+=" R ";
-            this.bird.deltaX = 0;
-            this.bird.deltaZ = 0;
+        if (this.gui.isKeyPressed("KeyR")) {
+            text += " R ";
+            this.bird.dX = 0;
+            this.bird.dZ = 0;
             this.bird.rotation = 0;
-            this.bird.speed = 0;
-        }*///                          this one's NOT WORKING fsr  (╯°□°）╯︵ ┻━┻   
+            this.bird.speedFactor = 0;
+        }
 
-    
+        if (this.gui.isKeyPressed("KeyL")) {
+            text += " L ";
+            this.lightning.doGenerate();
+        }
     }
 
     initMaterials() {
@@ -159,18 +180,26 @@ class MyScene extends CGFscene {
         this.plane.display();
         this.popMatrix();*/
 
-        /*this.mapMaterial.apply();
-        this.cubeMap.display();*/
+        if (this.displayBird) {
+            this.pushMatrix();
+            this.translate(0, 3, 0);
+            this.bird.display();
+            this.popMatrix();
+        }
+
+        this.pushMatrix();
+        this.translate(0, 20, 0);
+        this.rotate(Math.PI, 1, 0, 0);
+        this.lightning.display();
+        this.popMatrix();
+
+        this.terrain.display();
 
         if (this.displayHouse)
             this.house.display();
 
-        if (this.displayBird) {
-            this.pushMatrix();
-            this.translate(0, 0, 0);
-            this.bird.display();
-            this.popMatrix();
-        }
+        this.mapMaterial.apply();
+        this.cubeMap.display();
 
         this.popMatrix();
 

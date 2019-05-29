@@ -18,25 +18,25 @@ class MyBird extends CGFobject {
         this.dZ = 0;
         this.wingRot = 0;
 
-        this.birdRotation=2*Math.PI;//rotation is taken (●'◡'●)
+        this.birdRotation = 2 * Math.PI; // rotation is taken (●'◡'●)
 
-        this.birdSpeed = 0; //speed is taken ╰(*°▽°*)╯
+        this.birdSpeed = 0; // speed is taken ╰(*°▽°*)╯
 
-        //this.initMaterials();
+        // this.initMaterials();
     }
 
-    rotateBird(value){ //turn is taken ༼ つ ◕_◕ ༽つ
-        this.birdRotation += value;
+    turn(v) { // turn is taken ༼ つ ◕_◕ ༽つ
+        this.birdRotation += v;
     }
 
-    accelerateBird(value){ //accelerate is taken (⌐■_■)
-        this.birdSpeed+=value;
+    accelerate(v) { // accelerate is taken (⌐■_■)
+        this.birdSpeed += v;
     }
 
-    moveBird(){//move is taken ¯\_(ツ)_/¯
-        this.dZ += this.birdSpeed*Math.cos(this.birdRotation);
-        this.dX += this.birdSpeed*Math.sin(this.birdRotation);
-    } 
+    moveBird() {// move is taken ¯\_(ツ)_/¯
+        this.dZ += this.birdSpeed * Math.cos(this.birdRotation);
+        this.dX += this.birdSpeed * Math.sin(this.birdRotation);
+    }
     initMaterials() {
 
         //------ Textures
@@ -63,15 +63,18 @@ class MyBird extends CGFobject {
         this.fireMaterial.loadTexture('images/redWood.jpg');
         this.fireMaterial.setTexture(this.textureFire);
         this.fireMaterial.setTextureWrap('REPEAT', 'REPEAT');
-        //------
+
+        //---------------
 
     }
 
     display() {
 
-        this.scene.pushMatrix();
-        this.scene.translate(this.dX, this.dY,this.dZ);
-        this.scene.rotate(this.birdRotation + 3*Math.PI/2,0,1,0);
+        this.scene.pushMatrix(); // whole bird
+
+        this.scene.translate(this.dX, this.dY, this.dZ);
+        this.scene.rotate(this.birdRotation + 3 * Math.PI / 2, 0, 1, 0);
+
         // body
         this.scene.pushMatrix();
         this.scene.scale(0.8, 0.5, 0.5);
@@ -83,7 +86,6 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(0.8, 0.5, 0.5);
         this.scene.translate(-1, 0, 0);
-        //this.scene.rotate(-Math.PI / 5, 1, 0, 0);
         this.scene.rotate(Math.PI / 2, 0, 0, 1);
         this.pyramid.display();
         this.scene.popMatrix();
@@ -148,7 +150,7 @@ class MyBird extends CGFobject {
         // left wing
         this.scene.pushMatrix();
         //this.scene.translate(0,0,0.025);
-        this.scene.rotate(this.wingRot,1,0,0); // Wing rotation, wrong axis (⊙_⊙;)
+        this.scene.rotate(this.wingRot, 1, 0, 0); // Wing rotation, wrong axis (⊙_⊙;)
 
         this.scene.pushMatrix();
         this.scene.translate(-0.4, 0.1, 0.5);
@@ -164,12 +166,13 @@ class MyBird extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.popMatrix();
+        //---------------
 
         // right wing
         this.scene.pushMatrix();
 
         this.scene.scale(1, 1, -1);
-        this.scene.rotate(this.wingRot,1,0,0); // Wing rotation, wrong axis (⊙_⊙;)
+        this.scene.rotate(this.wingRot, 1, 0, 0); // Wing rotation, wrong axis (⊙_⊙;)
 
         this.scene.pushMatrix();
         this.scene.translate(-0.4, 0.1, 0.5);
@@ -185,8 +188,9 @@ class MyBird extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.popMatrix();
+        //---------------
 
-        this.scene.popMatrix();
+        this.scene.popMatrix();  // whole bird
     }
 
     updateBuffers(complexity) {
