@@ -42,6 +42,8 @@ class MyScene extends CGFscene {
         this.speedFactor = 1;
         this.ambientFactor = 0.75;
 
+        this.time;
+
         this.initMaterials();
 
         this.doGenerate = function () {
@@ -63,6 +65,8 @@ class MyScene extends CGFscene {
     }
 
     update(t) {
+
+        this.time = t;
         this.bird.dY = 0.25 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
         this.bird.wingRot = Math.PI / 4 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
         this.keyInput();
@@ -102,7 +106,8 @@ class MyScene extends CGFscene {
 
         if (this.gui.isKeyPressed("KeyL")) {
             text += " L ";
-            this.lightning.doGenerate();
+           // this.lightning.depth = 0;
+            this.lightning.startAnimation(this.time);
         }
     }
 

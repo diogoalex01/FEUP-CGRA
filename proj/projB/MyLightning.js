@@ -10,11 +10,12 @@ class MyLightning extends MyLSystem {
         this.quad = new MyLightningQuad(this.scene);
 
         this.axiom = "X";
-        this.ruleF = "FF";
-        this.ruleX = "F[-X][X]F[-X]+FX";
         this.angle = 25.0;
-        this.iterations = 4;
-        this.scale = 0.65;
+        this.iterations = 3;
+        this.scale = 0.5;
+
+        this.time = 1;
+        this.depth = 0;
 
         this.initGrammar();
     }
@@ -27,9 +28,9 @@ class MyLightning extends MyLSystem {
         };
     }
 
-    doGenerate() {
+    startAnimation(t){
         this.generate(
-            this.axiom,
+            "X",
             {
                 "F": ["FF"],
                 "X": ["F[-X][X]F[-X]+FX", "F[-X][X]F[+X]-FX"]
@@ -38,5 +39,8 @@ class MyLightning extends MyLSystem {
             this.iterations,
             this.scale
         );
+
+        this.time = t;
+        this.depth =1;
     }
 }
