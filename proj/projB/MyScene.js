@@ -31,7 +31,7 @@ class MyScene extends CGFscene {
         this.terrain = new MyTerrain(this);
         this.lightning = new MyLightning(this);
         this.nest = new MyNest(this);
-        this.stick = new MyStick(this);
+        this.sticks = [new MyStick(this, -10, 2, 0), new MyStick(this, 10, 3, 0), new MyStick(this, 10, 3, 10), new MyStick(this, -10, 3, -10)]
         this.forest = new MyForest(this);
 
         // Objects connected to MyInterface
@@ -51,18 +51,19 @@ class MyScene extends CGFscene {
 
     update(t) {
         this.time = t;
-        this.bird.dY = 0.25 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
-        this.bird.wingRot = Math.PI / 4 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
-        this.keyInput();
+        this.bird.update(t);
+        this.keyInput(t);
         this.bird.moveBird();
         this.lightning.update(t / 1000);
+        this.bird.upDownBird(t);
+        this.checkBirdStickPosition();
 
         if (this.lightning.newTime > 1) {
             this.lightning.depth = 0;
         }
     }
 
-    keyInput() {
+    keyInput(t) {
         var text = "keys pressed; ";
 
         if (this.gui.isKeyPressed("KeyW")) {
@@ -91,11 +92,19 @@ class MyScene extends CGFscene {
             this.bird.dZ = 0;
             this.bird.rotation = 0;
             this.bird.speedFactor = 0;
+            this.bird.birdSpeed = 0;
+            this.bird.upDown = false;
+            this.bird.pickedStick = false;
         }
 
         if (this.gui.isKeyPressed("KeyL")) {
             text += " L ";
             this.lightning.startAnimation(this.time / 1000);
+        }
+
+        if (this.gui.isKeyPressed("KeyP")) {
+            this.bird.upDown = true;
+            this.bird.tInit = t;
         }
     }
 
@@ -131,6 +140,23 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+
+    checkBirdStickPosition()
+    {
+        if(this.bird.upDown)
+        {
+            for(var i=0; i< this.sticks.length; i++)
+            {
+                
+                if(Math.abs(this.sticks[i].x - this.bird.dX)< 2 && Math.abs(this.sticks[i].z - this.bird.dZ)< 2)
+                {
+
+                    this.bird.pickedStick = true;
+                    this.sticks.splice(i, 1);
+                }
+            }
+        }
     }
 
     display() {
@@ -169,12 +195,14 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         this.scale(this.birdScaleFactor, this.birdScaleFactor, this.birdScaleFactor);
+
         if (this.displayBird) {
             this.pushMatrix();
             this.translate(0, 3, 0);
             this.bird.display();
             this.popMatrix();
         }
+
         this.popMatrix();
 
         this.pushMatrix();
@@ -183,10 +211,10 @@ class MyScene extends CGFscene {
         this.lightning.display();
         this.popMatrix();
 
-        this.pushMatrix();
-        this.translate(-18, 6, 0);
-        this.stick.display();
-        this.popMatrix();
+        for(var i =0; i< this.sticks.length; i++)
+        {
+            this.sticks[i].display();
+        }
 
         this.pushMatrix();
         this.translate(18, 4, 0);

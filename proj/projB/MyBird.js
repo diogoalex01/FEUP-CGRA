@@ -12,11 +12,16 @@ class MyBird extends CGFobject {
         this.wingPyramid = new MyPyramid(this.scene, 4, 1);
         this.cone = new MyCone(this.scene, 5, 1);
         this.cube = new MyUnitCubeQuad(this.scene);
+        this.stick = new MyStick(this.scene, 0, 0 ,0);
+        this.upDown = false;
 
+        this.tInit;
         this.dX = 0;
         this.dY = 0;
         this.dZ = 0;
         this.wingRot = 0;
+
+        this.pickedStick= false;
 
         this.birdRotation = 2 * Math.PI; // rotation is taken (●'◡'●)
 
@@ -29,6 +34,34 @@ class MyBird extends CGFobject {
         this.birdRotation += v;
     }
 
+    upDownBird(t){
+
+        if(this.upDown)
+        {
+            this.deltaT = t - this.tInit;
+            if(this.deltaT < 1000)
+            {
+                this.dY -= 0.05;
+            }
+
+            else if(this.deltaT < 2000)
+            {
+                this.dY += 0.05;
+            }
+
+            else if (this.deltaT > 2000){
+                this.upDown = false;
+                return;
+            }
+        }
+    }
+
+    update(t) {
+        if (!this.upDown) {
+        this.dY = 0.25 * Math.sin(2 * Math.PI * t / 1000 * this.scene.speedFactor);
+        this.wingRot = Math.PI / 4 * Math.sin(2 * Math.PI * t / 1000 * this.scene.speedFactor); }
+    }
+
     accelerate(v) { // accelerate is taken (⌐■_■)
         this.birdSpeed += v;
     }
@@ -37,6 +70,7 @@ class MyBird extends CGFobject {
         this.dZ += this.birdSpeed * Math.cos(this.birdRotation);
         this.dX += this.birdSpeed * Math.sin(this.birdRotation);
     }
+
     initMaterials() {
 
         //------ Textures
@@ -191,7 +225,16 @@ class MyBird extends CGFobject {
         this.pyramid.display();
         this.scene.popMatrix();
 
-        this.scene.popMatrix();  // whole bird
+        if(this.pickedStick)
+        {
+            this.scene.pushMatrix();
+            this.scene.translate(0.6, 0.4, 0.5);
+            this.scene.rotate(Math.PI/2, 0, 1, 0);
+            this.stick.display();
+            this.scene.popMatrix();
+        }
+
+        this.scene.popMatrix();  // whole bird.
     }
 
     updateBuffers(complexity) {

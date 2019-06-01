@@ -4,9 +4,11 @@
  * @param scene - Reference to MyScene object
  */
 class MyStick extends CGFobject {
-    constructor(scene) {
+    constructor(scene, x, y, z) {
         super(scene);
-
+        this.x = x;
+        this.y = y;
+        this.z = z;
         this.scene.cylinder = new MyCylinder(this.scene, 8);
 
         this.initMaterials();
@@ -32,8 +34,10 @@ class MyStick extends CGFobject {
 
     display() {
 
+
         this.stickMaterial.apply();
         this.scene.pushMatrix();
+        this.scene.translate(this.x, this.y, this.z);
         this.scene.translate(1.5, 0, 0.5);
         this.scene.rotate(Math.PI / 2, 0, 0, 1);
         this.scene.scale(0.1, 2, 0.1);
