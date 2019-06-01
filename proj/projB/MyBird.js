@@ -11,7 +11,7 @@ class MyBird extends CGFobject {
         this.pyramid = new MyPyramid(this.scene, 5, 1);
         this.wingPyramid = new MyPyramid(this.scene, 4, 1);
         this.cone = new MyCone(this.scene, 5, 1);
-        this.cube = new MyUnitCube(this.scene);
+        this.cube = new MyUnitCubeQuad(this.scene);
 
         this.dX = 0;
         this.dY = 0;
@@ -22,7 +22,7 @@ class MyBird extends CGFobject {
 
         this.birdSpeed = 0; // speed is taken ╰(*°▽°*)╯
 
-        // this.initMaterials();
+        this.initMaterials();
     }
 
     turn(v) { // turn is taken ༼ つ ◕_◕ ༽つ
@@ -40,31 +40,30 @@ class MyBird extends CGFobject {
     initMaterials() {
 
         //------ Textures
-        this.textureTrunk = new CGFtexture(this.scene, 'images/redWood.jpg');
+        this.textureBird = new CGFtexture(this.scene, 'images/feather.png');
 
         //------ Applied Material
-        this.trunkMaterial = new CGFappearance(this.scene);
-        this.trunkMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.trunkMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.trunkMaterial.setSpecular(0.1, 0.1, 0.1, 1);
-        this.trunkMaterial.setShininess(10.0);
-        this.trunkMaterial.loadTexture('images/redWood.jpg');
-        this.trunkMaterial.setTexture(this.textureTrunk);
-        this.trunkMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        this.birdMaterial = new CGFappearance(this.scene);
+        this.birdMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.birdMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.birdMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.birdMaterial.setShininess(10.0);
+        this.birdMaterial.loadTexture('images/feather.png');
+        this.birdMaterial.setTexture(this.textureBird);
+        this.birdMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.textureFire = new CGFtexture(this.scene, 'images/fire.jpg');
+         //------ Textures
+         this.textureBick = new CGFtexture(this.scene, 'images/bick.jpg');
 
-        //------ Applied Material
-        this.fireMaterial = new CGFappearance(this.scene);
-        this.fireMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.fireMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.fireMaterial.setSpecular(0.1, 0.1, 0.1, 1);
-        this.fireMaterial.setShininess(10.0);
-        this.fireMaterial.loadTexture('images/redWood.jpg');
-        this.fireMaterial.setTexture(this.textureFire);
-        this.fireMaterial.setTextureWrap('REPEAT', 'REPEAT');
-
-        //---------------
+         //------ Applied Material
+         this.bickMaterial = new CGFappearance(this.scene);
+         this.bickMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+         this.bickMaterial.setDiffuse(0.4, 0.4, 0.4, 1);
+         this.bickMaterial.setSpecular(0.9, 0.9, 0.9, 1);
+         this.bickMaterial.setShininess(10.0);
+         this.bickMaterial.setTexture(this.textureBick);
+         this.bickMaterial.setTextureWrap('REPEAT', 'REPEAT');
+ 
 
     }
 
@@ -75,6 +74,7 @@ class MyBird extends CGFobject {
         this.scene.translate(this.dX, this.dY, this.dZ);
         this.scene.rotate(this.birdRotation + 3 * Math.PI / 2, 0, 1, 0);
 
+        this.birdMaterial.apply();
         // body
         this.scene.pushMatrix();
         this.scene.scale(0.8, 0.5, 0.5);
@@ -122,14 +122,6 @@ class MyBird extends CGFobject {
         this.scene.rotate(-Math.PI / 2, 0, 0, 1);
         this.scene.rotate(Math.PI / 5, 0, 1, 0);
         this.cone.display();
-        this.scene.popMatrix();
-
-        // beak
-        this.scene.pushMatrix();
-        this.scene.translate(0.6, 0.4, 0);
-        this.scene.scale(0.5, 0.25, 0.25);
-        this.scene.rotate(-Math.PI / 2, 0, 0, 1);
-        this.pyramid.display();
         this.scene.popMatrix();
 
         // eyes
@@ -189,6 +181,15 @@ class MyBird extends CGFobject {
 
         this.scene.popMatrix();
         //---------------
+
+        // beak
+        this.bickMaterial.apply();
+        this.scene.pushMatrix();
+        this.scene.translate(0.6, 0.4, 0);
+        this.scene.scale(0.5, 0.25, 0.25);
+        this.scene.rotate(-Math.PI / 2, 0, 0, 1);
+        this.pyramid.display();
+        this.scene.popMatrix();
 
         this.scene.popMatrix();  // whole bird
     }

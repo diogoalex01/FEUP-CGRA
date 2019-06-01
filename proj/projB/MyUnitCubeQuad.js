@@ -16,6 +16,42 @@ class MyUnitCubeQuad extends CGFobject {
 		this.scene.quad3 = new MyQuad(this.scene);
 	}
 
+	/*//
+	initMaterials() {
+
+        //------ Textures
+		this.textureCubeSide = new CGFtexture(this.scene, 'images/mineSide.png');
+		this.textureCubeBottom = new CGFtexture(this.scene, 'images/mineBottom.png');
+		this.textureCubeTop = new CGFtexture(this.scene, 'images/mineTop.png');
+
+        //------ Applied Material
+        this.cubeMaterialSide = new CGFappearance(this.scene);
+        this.cubeMaterialSide.setAmbient(0.1, 0.1, 0.1, 1);
+        this.cubeMaterialSide.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.cubeMaterialSide.setSpecular(0.1, 0.1, 0.1, 1);
+        this.cubeMaterialSide.setShininess(10.0);
+        this.cubeMaterialSide.setTexture(this.textureCubeSide);
+		this.cubeMaterialSide.setTextureWrap('REPEAT', 'REPEAT');
+		
+		this.cubeMaterialBottom = new CGFappearance(this.scene);
+        this.cubeMaterialBottom.setAmbient(0.1, 0.1, 0.1, 1);
+        this.cubeMaterialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.cubeMaterialBottom.setSpecular(0.1, 0.1, 0.1, 1);
+        this.cubeMaterialBottom.setShininess(10.0);
+        this.cubeMaterialBottom.setTexture(this.textureCubeBottom);
+		this.cubeMaterialBottom.setTextureWrap('REPEAT', 'REPEAT');
+		
+		this.cubeMaterialTop = new CGFappearance(this.scene);
+        this.cubeMaterialTop.setAmbient(0.1, 0.1, 0.1, 1);
+        this.cubeMaterialTop.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.cubeMaterialTop.setSpecular(0.1, 0.1, 0.1, 1);
+		this.cubeMaterialTop.setShininess(10.0);
+        this.cubeMaterialTop.setTexture(this.textureCubeTop);
+        this.cubeMaterialTop.setTextureWrap('REPEAT', 'REPEAT');
+        //------
+
+	} */
+
 	display() {
 
 		//top

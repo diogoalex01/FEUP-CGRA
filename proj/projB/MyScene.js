@@ -30,6 +30,8 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.terrain = new MyTerrain(this);
         this.lightning = new MyLightning(this);
+        this.nest = new MyNest(this);
+        this.stick = new MyStick(this);
         //this.plant = new MyLSPlant(this);
 
         // Objects connected to MyInterface
@@ -178,11 +180,9 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
-        /*this.pushMatrix();
-        this.rotate(-0.5 * Math.PI, 1, 0, 0);
-        this.scale(60, 60, 1);
-        this.plane.display();
-        this.popMatrix();*/
+
+        this.terrain.display();
+
 
         if (this.displayBird) {
             this.pushMatrix();
@@ -195,6 +195,16 @@ class MyScene extends CGFscene {
         this.translate(0, 20, 0);
         this.rotate(Math.PI, 1, 0, 0);
         this.lightning.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-18, 6, 0);
+        this.stick.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(18, 4, 0);
+        this.nest.display();
         this.popMatrix();
 
         //this.terrain.display();

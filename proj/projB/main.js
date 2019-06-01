@@ -23,6 +23,8 @@ serialInclude(['../lib/CGF.js',
     'MyBranch.js',
     'MyTerrain.js',
     'MyLightningQuad.js',
+    'MyNest.js',
+    'MyStick.js',
 
     main = function () {
         var app = new CGFapplication(document.body);
