@@ -41,8 +41,7 @@ class MyScene extends CGFscene {
         this.scaleFactor = 1;
         this.speedFactor = 1;
         this.ambientFactor = 0.75;
-
-        this.time;
+        this.time = 0;
 
         this.initMaterials();
 
@@ -59,18 +58,19 @@ class MyScene extends CGFscene {
                 this.scaleFactor
             );
         }
-
-        // do initial generation
-        //this.doGenerate();
     }
 
     update(t) {
-
         this.time = t;
         this.bird.dY = 0.25 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
         this.bird.wingRot = Math.PI / 4 * Math.sin(2 * Math.PI * t / 1000 * this.speedFactor);
         this.keyInput();
         this.bird.moveBird();
+        this.lightning.update(t / 1000);
+
+        if (this.lightning.newTime > 1) {
+            this.lightning.depth = 0;
+        }
     }
 
     keyInput() {
@@ -106,8 +106,7 @@ class MyScene extends CGFscene {
 
         if (this.gui.isKeyPressed("KeyL")) {
             text += " L ";
-           // this.lightning.depth = 0;
-            this.lightning.startAnimation(this.time);
+            this.lightning.startAnimation(this.time / 1000);
         }
     }
 
@@ -198,13 +197,13 @@ class MyScene extends CGFscene {
         this.lightning.display();
         this.popMatrix();
 
-        this.terrain.display();
+        //this.terrain.display();
 
         if (this.displayHouse)
             this.house.display();
 
         this.mapMaterial.apply();
-        this.cubeMap.display();
+        //this.cubeMap.display();
 
         this.popMatrix();
 
