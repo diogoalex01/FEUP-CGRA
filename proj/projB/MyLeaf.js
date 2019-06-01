@@ -28,6 +28,13 @@ class MyLeaf extends CGFobject {
         this.scene.triangle.display();
         this.scene.popMatrix();
 
+        this.scene.pushMatrix();
+        this.green.apply();
+		this.scene.rotate(Math.PI, 0, 1, 0);
+        this.scene.rotate(Math.PI / 2, 0, 0, 1);
+        this.scene.triangle.display();
+        this.scene.popMatrix();
+
     }
 
     updateBuffers(complexity) {

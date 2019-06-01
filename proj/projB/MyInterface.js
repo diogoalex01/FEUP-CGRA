@@ -21,6 +21,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayBird').name("Display Bird");
 
         this.gui.add(this.scene, 'scaleFactor', 0.5, 3.0).name('Scale');
+        this.gui.add(this.scene, 'birdScaleFactor', 0.5, 3.0).name('Bird Scale');
         this.gui.add(this.scene, 'speedFactor', 0.1, 3.0).name('Speed');
         this.gui.add(this.scene, 'ambientFactor', 0.1, 1).name('Ambient Light');
 

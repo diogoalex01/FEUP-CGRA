@@ -33,20 +33,20 @@ class MyLightning extends MyLSystem {
     update(t) {
         this.newTime = t - this.time;
         this.depth = this.newTime * this.axiom.length;
-        console.log(this.depth);
+        //console.log(this.depth);
     }
 
     startAnimation(t) {
         this.setDefaultValues();
         this.time = t;
-        this.depth = 1;
+        this.depth = 0;
 
         this.generate(
             this.axiom,
             {
                 "F": ["FF"],
                 "X": ["F[-X][X]F[-X]+FXF[-X]F[+X]-FX", "F[-X][X]F[+X]-FXF[X]F[-X]+FX",
-                    "F[-X][X]F[-X]+FX", "F[-X][X]F[+X]-FX"]
+                      "F[-X][X]F[-X]+FX", "F[-X][X]F[+X]-FX"]
             },
             this.angle,
             this.iterations,

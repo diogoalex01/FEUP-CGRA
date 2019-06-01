@@ -32,7 +32,7 @@ class MyScene extends CGFscene {
         this.lightning = new MyLightning(this);
         this.nest = new MyNest(this);
         this.stick = new MyStick(this);
-        //this.plant = new MyLSPlant(this);
+        this.forest = new MyForest(this);
 
         // Objects connected to MyInterface
         this.selectedObject = 0;
@@ -40,26 +40,13 @@ class MyScene extends CGFscene {
         this.displayNormals = false;
         this.displayHouse = false;
         this.displayBird = true;
-        this.scaleFactor = 1;
+        this.scaleFactor = 0.5;
+        this.birdScaleFactor = 1;
         this.speedFactor = 1;
         this.ambientFactor = 0.75;
         this.time = 0;
 
         this.initMaterials();
-
-        this.doGenerate = function () {
-
-            this.plant.generate(
-                this.axiom,
-                {
-                    "F": ["FF"],
-                    "X": ["F[-X][X]F[-X]+FX"]
-                },
-                this.angle,
-                this.iterations,
-                this.scaleFactor
-            );
-        }
     }
 
     update(t) {
@@ -180,16 +167,15 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
-
-        this.terrain.display();
-
-
+        this.pushMatrix();
+        this.scale(this.birdScaleFactor, this.birdScaleFactor, this.birdScaleFactor);
         if (this.displayBird) {
             this.pushMatrix();
             this.translate(0, 3, 0);
             this.bird.display();
             this.popMatrix();
         }
+        this.popMatrix();
 
         this.pushMatrix();
         this.translate(0, 20, 0);
@@ -207,7 +193,11 @@ class MyScene extends CGFscene {
         this.nest.display();
         this.popMatrix();
 
-        //this.terrain.display();
+        this.pushMatrix();
+        this.forest.display();
+        this.popMatrix();
+
+        this.terrain.display();
 
         if (this.displayHouse)
             this.house.display();
