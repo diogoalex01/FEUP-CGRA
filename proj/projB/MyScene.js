@@ -31,15 +31,13 @@ class MyScene extends CGFscene {
         this.terrain = new MyTerrain(this);
         this.lightning = new MyLightning(this);
         this.nest = new MyNest(this);
-        this.sticks = [new MyStick(this, -10, 2, 0), new MyStick(this, 10, 3, 0), new MyStick(this, 10, 3, 10), new MyStick(this, -10, 3, -10)]
+        this.sticks = [new MyStick(this, -12, 2.5, 0), new MyStick(this, 10, 2.5, 0), new MyStick(this, 10, 2.5, 10), new MyStick(this, -10, 2.5, -10)]
         this.forest = new MyForest(this);
 
         // Objects connected to MyInterface
         this.selectedObject = 0;
         this.displayAxis = true;
         this.displayNormals = false;
-        this.displayHouse = false;
-        this.displayBird = true;
         this.scaleFactor = 0.5;
         this.birdScaleFactor = 1;
         this.speedFactor = 1;
@@ -57,6 +55,7 @@ class MyScene extends CGFscene {
         this.lightning.update(t / 1000);
         this.bird.upDownBird(t);
         this.checkBirdStickPosition();
+        this.checkBirdNestPosition();
 
         if (this.lightning.newTime > 1) {
             this.lightning.depth = 0;
@@ -95,6 +94,8 @@ class MyScene extends CGFscene {
             this.bird.birdSpeed = 0;
             this.bird.upDown = false;
             this.bird.pickedStick = false;
+            this.bird.readyPickStick = -1;
+            this.bird.readyDropStick = false;
         }
 
         if (this.gui.isKeyPressed("KeyL")) {
@@ -102,7 +103,7 @@ class MyScene extends CGFscene {
             this.lightning.startAnimation(this.time / 1000);
         }
 
-        if (this.gui.isKeyPressed("KeyP")) {
+        if (this.gui.isKeyPressed("KeyP") && !this.bird.upDown) {
             this.bird.upDown = true;
             this.bird.tInit = t;
         }
@@ -142,18 +143,21 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    checkBirdStickPosition()
-    {
-        if(this.bird.upDown)
-        {
-            for(var i=0; i< this.sticks.length; i++)
-            {
-                
-                if(Math.abs(this.sticks[i].x - this.bird.dX)< 2 && Math.abs(this.sticks[i].z - this.bird.dZ)< 2)
-                {
+    checkBirdStickPosition() {
+        if (this.bird.upDown && !this.bird.pickedStick) {
+            for (var i = 0; i < this.sticks.length; i++) {
+                if (Math.abs(this.sticks[i].x - this.bird.dX) < 2 && Math.abs(this.sticks[i].z - this.bird.dZ) < 2) {
+                    this.bird.readyPickStick = i;
+                }
+            }
+        }
+    }
 
-                    this.bird.pickedStick = true;
-                    this.sticks.splice(i, 1);
+    checkBirdNestPosition() {
+        if (this.bird.upDown && this.bird.pickedStick) {
+            for (var i = 0; i < this.sticks.length; i++) {
+                if (Math.abs(17 - this.bird.dX) < 3.5 && Math.abs(0 - this.bird.dZ) < 2.5) {
+                    this.bird.readyDropStick = true;
                 }
             }
         }
@@ -193,45 +197,61 @@ class MyScene extends CGFscene {
         this.pushMatrix();
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
+        // ---------- Bird
         this.pushMatrix();
+        this.translate(0, 5, 0);
+        this.translate(this.bird.dX, this.bird.dY, this.bird.dZ);
         this.scale(this.birdScaleFactor, this.birdScaleFactor, this.birdScaleFactor);
-
-        if (this.displayBird) {
-            this.pushMatrix();
-            this.translate(0, 3, 0);
-            this.bird.display();
-            this.popMatrix();
-        }
-
+        this.translate(-this.bird.dX, -this.bird.dY, -this.bird.dZ);
+        this.bird.display();
         this.popMatrix();
+        //----------------
 
+        // ----- Lightning
         this.pushMatrix();
         this.translate(0, 20, 0);
         this.rotate(Math.PI, 1, 0, 0);
         this.lightning.display();
         this.popMatrix();
+        //----------------
 
-        for(var i =0; i< this.sticks.length; i++)
-        {
+        // --------- Twigs
+        for (var i = 0; i < this.sticks.length; i++) {
             this.sticks[i].display();
         }
+        //----------------
 
+        // ---------- Nest
         this.pushMatrix();
-        this.translate(18, 4, 0);
+        this.translate(17, 2.5, 0);
         this.nest.display();
         this.popMatrix();
+        //----------------
 
+        // -------- Forest
         this.pushMatrix();
         this.forest.display();
         this.popMatrix();
+        //----------------
 
+        // ------- Terrain
         this.terrain.display();
+        //----------------
 
-        if (this.displayHouse)
-            this.house.display();
+        // -------- House
+        this.pushMatrix();
+        this.scale(0.7, 0.7, 0.7);
+        this.translate(0, 4, 7);
+        this.house.display();
+        this.popMatrix();
+        //----------------
 
+        // -------- SkyBox
+        this.pushMatrix();
         this.mapMaterial.apply();
-        //this.cubeMap.display();
+        this.cubeMap.display();
+        this.popMatrix();
+        //----------------
 
         this.popMatrix();
 

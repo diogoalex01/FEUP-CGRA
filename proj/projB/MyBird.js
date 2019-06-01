@@ -12,8 +12,11 @@ class MyBird extends CGFobject {
         this.wingPyramid = new MyPyramid(this.scene, 4, 1);
         this.cone = new MyCone(this.scene, 5, 1);
         this.cube = new MyUnitCubeQuad(this.scene);
-        this.stick = new MyStick(this.scene, 0, 0 ,0);
+        this.stick = new MyStick(this.scene, 0, 0, 0);
         this.upDown = false;
+        this.readyPickStick = -1;
+        this.readyDropStick = false;
+        this.pickedStick = false;
 
         this.tInit;
         this.dX = 0;
@@ -21,10 +24,7 @@ class MyBird extends CGFobject {
         this.dZ = 0;
         this.wingRot = 0;
 
-        this.pickedStick= false;
-
         this.birdRotation = 2 * Math.PI; // rotation is taken (●'◡'●)
-
         this.birdSpeed = 0; // speed is taken ╰(*°▽°*)╯
 
         this.initMaterials();
@@ -34,22 +34,29 @@ class MyBird extends CGFobject {
         this.birdRotation += v;
     }
 
-    upDownBird(t){
-
-        if(this.upDown)
-        {
+    upDownBird(t) {
+        if (this.upDown) {
             this.deltaT = t - this.tInit;
-            if(this.deltaT < 1000)
-            {
-                this.dY -= 0.05;
+            if (this.deltaT < 1000) {
+                this.dY -= 0.15;
             }
 
-            else if(this.deltaT < 2000)
-            {
-                this.dY += 0.05;
+            else if (this.deltaT < 2000) {
+                this.dY += 0.15;
+
+                if (this.readyPickStick != -1) {
+                    this.pickedStick = true;
+                    this.scene.sticks.splice(this.readyPickStick, 1);
+                    this.readyPickStick = -1;
+                }
+
+                if (this.readyDropStick) {
+                    this.pickedStick = false;
+                    this.readyDropStick = false;
+                }
             }
 
-            else if (this.deltaT > 2000){
+            else if (this.deltaT > 2000) {
                 this.upDown = false;
                 return;
             }
@@ -58,15 +65,16 @@ class MyBird extends CGFobject {
 
     update(t) {
         if (!this.upDown) {
-        this.dY = 0.25 * Math.sin(2 * Math.PI * t / 1000 * this.scene.speedFactor);
-        this.wingRot = Math.PI / 4 * Math.sin(2 * Math.PI * t / 1000 * this.scene.speedFactor); }
+            this.dY = 0.25 * Math.sin(2 * Math.PI * t / 1000 * this.scene.speedFactor);
+        }
+        this.wingRot = Math.PI / 4 * Math.sin(2 * Math.PI * t / 1000 * this.scene.speedFactor);
     }
 
     accelerate(v) { // accelerate is taken (⌐■_■)
         this.birdSpeed += v;
     }
 
-    moveBird() {// move is taken ¯\_(ツ)_/¯
+    moveBird() { // move is taken ¯\_(ツ)_/¯
         this.dZ += this.birdSpeed * Math.cos(this.birdRotation);
         this.dX += this.birdSpeed * Math.sin(this.birdRotation);
     }
@@ -86,18 +94,17 @@ class MyBird extends CGFobject {
         this.birdMaterial.setTexture(this.textureBird);
         this.birdMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
-         //------ Textures
-         this.textureBick = new CGFtexture(this.scene, 'images/bick.jpg');
+        //------ Textures
+        this.textureBick = new CGFtexture(this.scene, 'images/bick.jpg');
 
-         //------ Applied Material
-         this.bickMaterial = new CGFappearance(this.scene);
-         this.bickMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-         this.bickMaterial.setDiffuse(0.4, 0.4, 0.4, 1);
-         this.bickMaterial.setSpecular(0.9, 0.9, 0.9, 1);
-         this.bickMaterial.setShininess(10.0);
-         this.bickMaterial.setTexture(this.textureBick);
-         this.bickMaterial.setTextureWrap('REPEAT', 'REPEAT');
- 
+        //------ Applied Material
+        this.bickMaterial = new CGFappearance(this.scene);
+        this.bickMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.bickMaterial.setDiffuse(0.4, 0.4, 0.4, 1);
+        this.bickMaterial.setSpecular(0.9, 0.9, 0.9, 1);
+        this.bickMaterial.setShininess(10.0);
+        this.bickMaterial.setTexture(this.textureBick);
+        this.bickMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
     }
 
@@ -198,7 +205,7 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
 
         this.scene.scale(1, 1, -1);
-        this.scene.rotate(this.wingRot, 1, 0, 0); // Wing rotation, wrong axis (⊙_⊙;)
+        this.scene.rotate(this.wingRot, 1, 0, 0); // Wing rotation (⊙_⊙;)
 
         this.scene.pushMatrix();
         this.scene.translate(-0.4, 0.1, 0.5);
@@ -225,11 +232,10 @@ class MyBird extends CGFobject {
         this.pyramid.display();
         this.scene.popMatrix();
 
-        if(this.pickedStick)
-        {
+        if (this.pickedStick) {
             this.scene.pushMatrix();
             this.scene.translate(0.6, 0.4, 0.5);
-            this.scene.rotate(Math.PI/2, 0, 1, 0);
+            this.scene.rotate(Math.PI / 2, 0, 1, 0);
             this.stick.display();
             this.scene.popMatrix();
         }

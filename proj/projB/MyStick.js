@@ -16,7 +16,6 @@ class MyStick extends CGFobject {
 
     initMaterials() {
 
-
         this.textureStick = new CGFtexture(this.scene, 'images/wood2.jpg');
 
         //------ Applied Material
@@ -34,7 +33,6 @@ class MyStick extends CGFobject {
 
     display() {
 
-
         this.stickMaterial.apply();
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
@@ -43,7 +41,6 @@ class MyStick extends CGFobject {
         this.scene.scale(0.1, 2, 0.1);
         this.scene.cylinder.display();
         this.scene.popMatrix();
-
 
     }
 

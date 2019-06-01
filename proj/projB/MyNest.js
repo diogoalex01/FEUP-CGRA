@@ -94,15 +94,6 @@ class MyNest extends CGFobject {
         this.scene.cylinder.display();
         this.scene.popMatrix();
 
-        /*  
-        this.topMaterial.apply();
-        this.scene.pushMatrix();
-        this.scene.translate(0, this.trunkHeight, 0);
-        this.scene.scale(this.treeTopRadius, this.treeTopHeight, this.treeTopRadius);
-        this.scene.cone.display();
-        this.scene.popMatrix();
-        */
-
     }
 
     updateBuffers(complexity) {

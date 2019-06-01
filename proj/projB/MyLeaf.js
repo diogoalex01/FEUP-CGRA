@@ -13,8 +13,8 @@ class MyLeaf extends CGFobject {
     initMaterials() {
 
         this.green = new CGFappearance(this.scene);
-        this.green.setAmbient(0, 1, 0, 1.0);
-        this.green.setDiffuse(0, 1, 0, 1.0);
+        this.green.setAmbient(0.04, 0.4, 0.14, 1.0);
+        this.green.setDiffuse(0.04, 0.4, 0.14, 1.0);
         this.green.setSpecular(1, 1, 1, 1.0);
         this.green.setShininess(10.0);
 

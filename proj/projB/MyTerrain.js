@@ -20,8 +20,8 @@ class MyTerrain extends CGFobject {
 
         //------ Applied Material
         this.appearence = new CGFappearance(this.scene);
-        this.appearence.setAmbient(0.1, 0.1, 0.1, 1);
-        this.appearence.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.appearence.setAmbient(0.5, 0.5, 0.5, 1);
+        this.appearence.setDiffuse(0.6, 0.6, 0.6, 1);
         this.appearence.setSpecular(0.1, 0.1, 0.1, 1);
         this.appearence.setShininess(10.0);
         this.texture = new CGFtexture(this.scene, "images/terrain.jpg");
